@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Liquid Glass Contact Form — CodeWithRishabh</title>
+<style>
+*{box-sizing:border-box} :root{font-family:Arial,Helvetica,sans-serif;color:#252339;background:#f3effa} body{margin:0;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #a08bfa;outline-offset:4px}
+.stage{width:540px;height:960px;position:relative;overflow:hidden;margin:auto;background:radial-gradient(ellipse at 100% 40%,#e0d7f8 0%,transparent 45%),radial-gradient(ellipse at 0% 85%,#fee5da 0%,transparent 42%),#f3effa}
+.brand{position:absolute;top:66px;left:38px;font-size:11px;font-weight:700;letter-spacing:2.1px;color:#73688c;display:flex;align-items:center;gap:9px}.brand i{width:9px;height:9px;background:#ff967b;border-radius:50%}
+.headline{position:absolute;left:36px;top:110px;margin:0;font-size:43px;line-height:1.08;letter-spacing:-2px;font-weight:800}.headline span{color:#8260d9}.tag{position:absolute;left:38px;top:215px;font-size:13px;letter-spacing:.3px;color:#7c738c}
+.orb{position:absolute;right:-52px;top:194px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 30% 28%,#fff7f1,#feb39c 42%,#d586a6 68%,#b69ae0);box-shadow:inset -20px -10px 30px #9774b53a;opacity:.7}
+.card{position:absolute;left:32px;top:276px;width:476px;height:534px;background:#ffffffed;border:1px solid #ffffff;border-radius:32px;box-shadow:0 28px 70px #5b3f8620;padding:27px 28px;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1.5px;font-weight:bold;color:#8c829d}.mini-brand{display:flex;align-items:center;gap:8px;color:#484056}.mini-brand svg{width:18px;height:18px}.counter{color:#998cab}
+.progress{display:flex;gap:7px;margin-top:20px}.progress i{height:4px;background:#eee9f5;flex:1;border-radius:9px}.progress i.active{background:#9878df}
+.content{position:relative;padding-top:27px}.avatar{width:48px;height:48px;border-radius:17px;background:#eee7fb;color:#8963d5;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #e1d4fa}.avatar svg{width:26px;height:26px}
+.greeting{position:absolute;left:61px;top:39px;color:#8b759b;font-size:12px;letter-spacing:.1px}.question{font-size:31px;font-weight:750;letter-spacing:-1px;line-height:1.15;margin:20px 0 10px}.description{font-size:13px;color:#8f849d;line-height:1.5;margin:0 0 22px}.field-label{display:block;font-size:10px;color:#776987;letter-spacing:1px;font-weight:700;margin:0 0 9px;text-transform:uppercase}
+input,textarea{width:100%;padding:17px 18px;border:1px solid #e2d8f1;background:#fbf9fe;border-radius:14px;color:#302540;outline:none;font-size:18px;transition:border-color .15s}input:focus,textarea:focus{border-color:#a189d3}input::placeholder,textarea::placeholder{color:#c4b9d2}textarea{resize:none;height:99px;font-size:16px;line-height:1.5;display:block}
+.action{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;border-radius:14px;padding:18px 20px;background:#292337;color:#fff;font-size:14px;font-weight:700;box-shadow:0 7px 14px #34283c13;margin-top:19px}.action .arrow{font-size:20px;line-height:1}.back{background:none;border:0;color:#93869d;padding:0;font-size:11px;margin-top:13px}.error{margin:8px 0 0;font-size:12px;color:#bd4b63;min-height:14px}
+.below{position:absolute;left:38px;top:838px;display:flex;align-items:center;gap:7px;font-size:11px;color:#a08ca8}.below .dot{width:5px;height:5px;border-radius:50%;background:#b0a0c0}.handle{position:absolute;top:890px;left:0;width:100%;text-align:center;font-weight:700;font-size:15px;color:#665272;letter-spacing:.1px}
+.review .question{margin-top:18px;font-size:30px}.review .description{margin-bottom:14px}.summary{padding:17px 19px;border-radius:17px;background:#f7f2fc;border:1px solid #ece1f8}.summary .row{padding:8px 0;display:flex;gap:13px;font-size:13px;border-bottom:1px solid #e7ddf0}.summary .row:last-child{border-bottom:0;display:block}.summary .key{color:#9a8ba8;min-width:48px;font-size:11px}.summary .val{font-weight:600;color:#655471;overflow-wrap:anywhere}.summary .row:last-child .val{margin-top:7px;line-height:1.4;font-size:14px}.review .action{margin-top:17px}.demo-note{font-size:10px;text-align:center;color:#ac9eb6;margin:12px 0 0}.success{text-align:center;padding-top:48px}.success .check{width:92px;height:92px;margin:auto;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f1eaff,#ddd0f7);box-shadow:0 15px 30px #ad94d02a;color:#8962cb}.success .check svg{width:46px;height:46px}.success h2{font-size:34px;line-height:1.1;letter-spacing:-1.3px;margin:27px 0 13px}.success p{font-size:14px;color:#9b8aa7;line-height:1.6}.success .action{margin-top:30px}.cursor{position:absolute;width:25px;height:29px;z-index:5;filter:drop-shadow(0 2px 2px #3123314d);pointer-events:none;display:none}.ripple{position:absolute;z-index:4;border:2px solid #aa88dc;border-radius:50%;pointer-events:none;display:none}.playing input,.playing textarea,.playing button{pointer-events:none}.playing *{transition:none!important}
+@media(max-width:539px){.stage{transform-origin:top left;transform:scale(var(--scale));margin:0}body{height:calc(960px * var(--scale));overflow-x:hidden}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Animated glass scene */
+.viewport{width:100%;overflow:hidden;min-height:100vh}
+.stage{background:radial-gradient(ellipse at 0% 5%,#d7f3ff 0%,transparent 55%),radial-gradient(ellipse at 100% 35%,#d9ccff 0%,transparent 55%),radial-gradient(ellipse at 5% 100%,#ffd4c2 0%,transparent 48%),linear-gradient(150deg,#eaf5ff,#f0e9ff 60%,#ffe7e0)}
+#ambient{position:absolute;inset:0;width:540px;height:960px;pointer-events:none;z-index:0}
+.shape{position:absolute;pointer-events:none;z-index:1;animation:float 7s ease-in-out infinite}
+.sphere{border-radius:50%;background:radial-gradient(circle at 26% 22%,#ffffff 0%,#e6ddff 14%,#a299ff 43%,#7b68e7 66%,#bba0ec 82%,#f1e2ff);box-shadow:inset 7px 9px 13px #ffffffbd,inset -14px -15px 23px #5a4d932f,9px 22px 35px #7b67b429}
+.sphere.one{width:140px;height:140px;left:425px;top:100px}
+.sphere.two{width:110px;height:110px;left:-46px;top:747px;background:radial-gradient(circle at 30% 25%,#fff,#ffe6cf 17%,#ffb597 50%,#e886a3 75%,#d8a0e3)}
+.sphere.three{width:52px;height:52px;left:435px;top:847px}
+.glass-ring{width:235px;height:235px;left:-94px;top:242px;border:22px solid #c7befb8a;border-radius:50%;box-shadow:inset 5px 3px 6px white,3px 7px 10px #8274cf4a;transform:rotateX(48deg) rotateZ(-28deg);animation:none}
+.glass-ring.second{left:433px;top:573px;width:168px;height:168px;border-width:15px;transform:rotateX(46deg) rotateY(32deg) rotateZ(22deg)}
+.brand,.headline,.tag,.below,.handle{z-index:3}.brand{color:#656080}.headline{color:#252340;letter-spacing:-2.3px}.headline span{background:linear-gradient(100deg,#6245cb,#9b6ada,#dd838f);-webkit-background-clip:text;background-clip:text;color:transparent}.tag{color:#716583}
+.orb{display:none}.card{z-index:3;background:linear-gradient(140deg,#ffffffeb,#ffffffd1);backdrop-filter:blur(20px);border:1.5px solid #ffffff;box-shadow:0 26px 60px #70609a29,inset 0 1px 2px white;border-radius:34px}
+.avatar{background:linear-gradient(140deg,#a18af6,#d5c5ff);color:white;border:1px solid #ede6ff;box-shadow:inset 0 2px 3px #ffffff85,0 7px 12px #9b87d42e;border-radius:17px}
+.action{background:linear-gradient(110deg,#5942a2,#8260c3);box-shadow:0 9px 16px #8963b72f}
+.progress i.active{background:linear-gradient(90deg,#8163cb,#b091e9)}
+input,textarea{background:#ffffffb3;border:1.5px solid #dfd4f4;box-shadow:inset 0 2px 5px #9788ba0d}
+.summary{background:linear-gradient(140deg,#f0e9ffcc,#fff4edaa);border-color:#e4d8f4}
+.success .check{background:linear-gradient(140deg,#d4c0ff,#f2eaff);box-shadow:inset 0 3px 6px white,0 20px 24px #a490c331}
+.below{color:#857198}.handle{color:#503e74}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -17px}}
+.cover-surface{position:absolute;inset:0;z-index:4}
+.cover-title{position:absolute;top:153px;left:28px;width:484px;text-align:center;font-weight:800;letter-spacing:-1.4px;line-height:1.13;margin:0}
+.cover-title .first{display:block;font-size:31px;color:#554078;letter-spacing:.2px}
+.cover-title .second{display:block;font-size:48px;margin-top:12px;color:#27213d}
+.cover-bubble{position:absolute;border-radius:32px;background:linear-gradient(135deg,#ffffffed,#ffffffa8);border:2px solid white;box-shadow:0 25px 50px #71569d26,inset 0 2px 2px #fff;backdrop-filter:blur(12px)}
+.cover-bubble.big{left:49px;top:354px;width:343px;height:213px;transform:rotate(-7deg)}
+.cover-bubble.big:after{content:'';position:absolute;left:31px;bottom:-21px;width:45px;height:45px;background:#faf5ff;clip-path:polygon(0 0,100% 0,0 100%)}
+.cover-bubble.small{left:176px;top:563px;width:315px;height:174px;transform:rotate(7deg);background:linear-gradient(130deg,#9b7ed6,#c3a5ed);border-color:#eadfff;box-shadow:0 25px 40px #7556a438,inset 0 2px 3px #eedbff}
+.cover-bubble.small:after{content:'';position:absolute;right:25px;bottom:-20px;width:40px;height:40px;background:#bda0e7;clip-path:polygon(0 0,100% 0,100% 100%)}
+.cover-avatar{position:absolute;left:24px;top:27px;width:68px;height:68px;border-radius:22px;background:linear-gradient(140deg,#ffcbb3,#f1979d);box-shadow:inset 0 2px 3px #fff,0 8px 10px #d48a9540;display:grid;place-items:center;color:white}
+.cover-avatar svg{width:40px;height:40px}.cover-line{position:absolute;height:12px;border-radius:8px;background:#d7cbed}
+.cover-line.a{left:112px;top:39px;width:178px}.cover-line.b{left:112px;top:68px;width:132px}.cover-line.c{left:26px;top:125px;width:278px;height:14px}.cover-line.d{left:26px;top:154px;width:219px;height:14px;background:#e8dff4}
+.cover-bubble.small .cover-line{background:#f7edffad;left:28px}.cover-bubble.small .cover-line.a{top:35px;width:193px}.cover-bubble.small .cover-line.b{top:67px;width:231px}.cover-bubble.small .cover-line.c{top:99px;width:136px}
+.cover-envelope{position:absolute;left:48px;top:663px;width:109px;height:109px;display:grid;place-items:center;border-radius:34px;background:linear-gradient(140deg,#a592f7,#d3c7ff);border:2px solid #eae1ff;box-shadow:inset 0 3px 5px #fff,0 18px 30px #7e6ab342;transform:rotate(-15deg);color:#fff}
+.cover-envelope svg{width:64px;height:64px}.cover-spark{position:absolute;left:445px;top:351px;color:#a17cce;width:37px;height:37px}.cover-handle{position:absolute;top:867px;left:0;width:100%;text-align:center;font-size:20px;font-weight:700;color:#564075}
+
+
+/* Liquid glass / midnight navy + electric cyan */
+:root{background:#080f21;color:#132b3e}
+.stage{background:radial-gradient(ellipse at 90% 15%,#164e73 0%,transparent 48%),radial-gradient(ellipse at 0% 95%,#084767 0%,transparent 47%),linear-gradient(145deg,#080f21,#102941 55%,#080f21)}
+.brand{color:#9cbbcf}.brand i{background:#45ddf2;box-shadow:0 0 15px #45ddf28a}
+.headline{color:#f5fbff}.headline span{background:linear-gradient(100deg,#b9faff,#44d9ed,#6cadff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{color:#a6c5d8}.below{color:#9fbdd0}.below span[style]{color:#9fbdd0!important}.handle{color:#d5faff}
+.sphere{background:radial-gradient(circle at 26% 20%,#fff 0%,#dbfbffb0 8%,#8fe8f8ad 24%,#238ab653 47%,#081e4ca8 66%,#69e0ee9c 86%,#e7ffff);border:1px solid #b3faff7a;box-shadow:inset 5px 7px 9px #ffffffba,inset -12px -12px 18px #4ac8ef48,0 14px 30px #00000050,0 0 24px #3aace229}
+.sphere.two{background:radial-gradient(circle at 26% 20%,#fff,#c9faffaa 12%,#54d2ef83 36%,#12508088 68%,#52e5f2b3 87%,#efffff)}
+.glass-ring{border-color:#83eafa52;box-shadow:inset 3px 5px 5px #d6ffffa8,inset -5px -3px 5px #3598ff8c,3px 8px 11px #00000045,0 0 19px #40c9ef38}
+.card{background:linear-gradient(135deg,#f1fcfff0,#dcf2fbdc 60%,#e6f8ffe3);border:1.5px solid #e6ffffdc;border-radius:38px;backdrop-filter:blur(6px);box-shadow:inset 0 2px 4px white,inset 0 -2px 3px #8ac9eab0,0 28px 48px #00000045,0 0 28px #75d9f02b}
+.card:before{content:'';position:absolute;left:-110%;top:-65%;width:65%;height:250%;background:linear-gradient(90deg,transparent,#ffffff50,transparent);transform:translateX(var(--sheen,0px)) rotate(24deg);pointer-events:none;z-index:0}
+.card-top,.content{position:relative;z-index:1}.mini-brand{color:#315a71}.counter{color:#5b7d93}.question{color:#122d43}.description{color:#50768c}.greeting{color:#487a91}.field-label{color:#446d84}
+.avatar{background:linear-gradient(140deg,#24afd0,#98e5fa);border:1px solid #dcffff;box-shadow:inset 0 2px 3px #ffffffdc,0 7px 12px #328bae30;color:#f6ffff}
+.progress i{background:#aacbd954}.progress i.active{background:linear-gradient(90deg,#1ea2cb,#62d9eb)}
+input,textarea{background:linear-gradient(140deg,#ffffffa6,#edfaff8f);border:1.5px solid #9dc7dd;box-shadow:inset 0 2px 4px #6496b517,inset 0 -1px 2px #fff;color:#183a51}input::placeholder,textarea::placeholder{color:#88a9bd}input:focus,textarea:focus{border-color:#19a8d1}
+.action{background:linear-gradient(120deg,#047fa8,#186bd7);box-shadow:inset 0 1px 2px #a7edff9f,0 8px 14px #106e9d30;color:#fff}
+.back{color:#597b90}.summary{background:linear-gradient(135deg,#eefcffc2,#d8f4ffad);border-color:#a9d6e9;box-shadow:inset 0 1px 3px #fff}.summary .row{border-color:#afcede}.summary .key{color:#608094}.summary .val{color:#214d64}
+.demo-note{color:#648597}.success .check{color:#0795c2;background:radial-gradient(circle at 28% 23%,#fff,#bdeeff 48%,#72c5e8);box-shadow:inset 0 3px 6px white,0 13px 22px #31759c26}.success p{color:#52778e}
+.cover-title .first{font-size:43px;letter-spacing:-1px;color:#ecfdff}.cover-title .second{font-size:46px;color:#48dff4}
+.cover-bubble{background:linear-gradient(135deg,#e2fbffc9,#a2eaff5c 55%,#d8fcff9f);border:2px solid #e0ffffcc;box-shadow:inset 0 2px 3px #fff,0 25px 40px #00000042,0 0 23px #65d8ee2b;backdrop-filter:blur(5px)}
+.cover-bubble.big:after{background:#bcefff}.cover-avatar{background:radial-gradient(circle at 24% 20%,#eaffff,#5cd9f3 38%,#178dc8 85%);box-shadow:inset 0 3px 3px white,0 8px 14px #094a8366;color:white}
+.cover-line{background:#2889ae5c}.cover-line.d{background:#529fc44d}
+.cover-bubble.small{background:linear-gradient(130deg,#2babd4a8,#64ddf163 55%,#b0f6ff7d);border-color:#a4f9ffba;box-shadow:inset 0 2px 3px #e5ffff,0 25px 40px #00000055,0 0 25px #41cee829}
+.cover-bubble.small:after{background:#68cde9}.cover-bubble.small .cover-line{background:#c2fcffb3}
+.cover-envelope{background:radial-gradient(circle at 25% 20%,#e5feffa8,#49cce57d 42%,#087eaf9c 75%);border-color:#b0faffbf;box-shadow:inset 0 3px 4px #fff,0 18px 30px #00000058;color:#e6ffff}.cover-spark{color:#8aedff}.cover-handle{color:#c9faff}
+
+</style>
+</head>
+<body>
+<div class="viewport"><main class="stage" id="stage">
+<canvas id="ambient" width="1080" height="1920" aria-hidden="true"></canvas>
+<div class="shape sphere one" aria-hidden="true"></div><div class="shape sphere two" aria-hidden="true"></div><div class="shape sphere three" aria-hidden="true"></div><div class="shape glass-ring" aria-hidden="true"></div><div class="shape glass-ring second" aria-hidden="true"></div>
+  <div class="brand"><i></i>CODEWITHRISHABH / UI PROJECT</div>
+  <h1 class="headline">A form that<br><span>feels like a chat.</span></h1>
+  <div class="tag">Conversational contact form</div><div class="orb" aria-hidden="true"></div>
+  <section class="card" aria-label="Contact form">
+    <div class="card-top"><span class="mini-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="m4 7 8 6 8-6"/></svg>LET’S CONNECT</span><span class="counter" id="counter">01 / 04</span></div>
+    <div class="progress" id="progress"><i></i><i></i><i></i><i></i></div>
+    <div id="content" class="content" aria-live="polite"></div>
+  </section>
+  <div class="below"><span class="dot"></span>HTML · CSS · JavaScript <span style="margin-left:14px;color:#aa98b3">Interactive demo</span></div>
+  <div class="handle">@codewithrishabh3596</div>
+  <svg id="cursor" class="cursor" viewBox="0 0 25 30" fill="none"><path d="M2 2v22l6-6 5 10 5-2-5-10h9L2 2Z" fill="#fff" stroke="#3d2c50" stroke-width="1.6" stroke-linejoin="round"/></svg><div id="ripple" class="ripple"></div>
+</main></div>
+<script>
+const content=document.getElementById('content');const counter=document.getElementById('counter');
+const progress=[...document.querySelectorAll('#progress i')];
+const data={name:'',email:'',message:''};let step=0;let finished=false;
+const bubble='<div class="avatar"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 5h18a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H14l-7 5v-5a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4Z"/><path d="M10 12h12M10 17h8"/></svg></div>';
+const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function show(focus=false){
+counter.textContent=finished?'COMPLETE':String(step+1).padStart(2,'0')+' / 04';progress.forEach((el,i)=>el.classList.toggle('active',i<=step));content.className='content'+(step===3?' review':'')+(finished?' success':'');
+if(finished){content.innerHTML='<div class="check"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 24 8 8 17-18"/></svg></div><h2>A little less form.<br>A lot more human.</h2><p>Your details are ready to review.<br>Three questions. One conversation.</p><button class="action" id="restart">Try it again <span class="arrow">↻</span></button><p class="demo-note">Demo complete · no message was sent</p>';document.getElementById('restart').onclick=()=>{step=0;finished=false;Object.keys(data).forEach(k=>data[k]='');show(true)};return;}
+if(step===3){content.innerHTML=bubble+'<span class="greeting">Nice to meet you, '+escape(data.name)+'.</span><h2 class="question">Here’s your message.</h2><p class="description">One last look before you finish.</p><div class="summary"><div class="row"><span class="key">Name</span><span class="val">'+escape(data.name)+'</span></div><div class="row"><span class="key">Email</span><span class="val">'+escape(data.email)+'</span></div><div class="row"><div class="key">Your message</div><div class="val">'+escape(data.message)+'</div></div></div><button class="action" id="next">Looks good <span class="arrow">✓</span></button><p class="demo-note">Preview only · nothing is sent</p>';document.getElementById('next').onclick=()=>{finished=true;show(true)};return;}
+const config=[['What should we<br>call you?','Let’s start with a name.','Your name','name','Type your name…','text'],['Where can we<br>reach you?','Your email keeps the conversation going.','Email address','email','you@example.com','email'],['What are you<br>working on?','Tell us a little about your project.','Your message','message','I’d love to build…','text']][step];
+content.innerHTML=bubble+'<span class="greeting">'+(step===0?'A quick hello goes a long way.':'Hi, '+escape(data.name)+'.')+'</span><h2 class="question">'+config[0]+'</h2><p class="description">'+config[1]+'</p><form id="form" novalidate><label class="field-label" for="answer">'+config[2]+'</label>'+(step===2?'<textarea id="answer" maxlength="500" required placeholder="'+config[4]+'">'+escape(data[config[3]])+'</textarea>':'<input id="answer" type="'+config[5]+'" maxlength="'+(step===0?40:100)+'" required autocomplete="'+config[3]+'" placeholder="'+config[4]+'" value="'+escape(data[config[3]])+'">')+'<button class="action" type="submit" id="next">'+(step===2?'Review message':'Continue')+' <span class="arrow">↗</span></button><div id="error" class="error" role="alert"></div></form>'+(step>0?'<button class="back" id="back">← Previous question</button>':'');
+document.getElementById('form').onsubmit=event=>{event.preventDefault();const input=document.getElementById('answer');const value=input.value.trim();if(!value||!input.checkValidity()){document.getElementById('error').textContent=step===1?'Please enter a valid email address.':'Please fill in your '+(step===0?'name':'message')+'.';input.focus();return;}data[config[3]]=value;step++;show(true)};
+document.getElementById('answer').oninput=e=>{data[config[3]]=e.target.value;document.getElementById('error').textContent=''};if(step>0)document.getElementById('back').onclick=()=>{step--;show(true)};if(focus)document.getElementById('answer')?.focus();
+}
+show();
+function resize(){document.documentElement.style.setProperty('--scale',Math.min(1,innerWidth/540))}resize();addEventListener('resize',resize);
+function ease(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)}
+// Deterministic playback of the same frontend states for the output-only reel.
+window.renderAt=function(t){
+document.body.classList.add('playing');data.name='Rishabh';data.email='rishabh@example.com';data.message='I’d love a portfolio website with smooth animations.';
+step=t<3.2?0:t<6.8?1:t<10.5?2:3;finished=t>=14.1;
+let localStart=[1,4.15,7.6][step];let duration=[1,1.7,2.0][step];let text=step===0?data.name:step===1?data.email:data.message;
+show();if(step<3){document.getElementById('answer').value=text.slice(0,Math.floor(Math.max(0,Math.min(1,(t-localStart)/duration))*text.length));}
+const stage=document.getElementById('stage');const boundaries=[0,3.2,6.8,10.5,14.1];const start=boundaries[finished?4:step];const age=t-start;
+content.style.opacity=String(ease(age/.3));content.style.transform='translateY('+(1-ease(age/.3))*14+'px)';
+const cursor=document.getElementById('cursor');const target=document.getElementById(finished?'restart':'next');const a=target.getBoundingClientRect(),b=stage.getBoundingClientRect();const scale=b.width/540;
+const clickTimes=[2.85,6.45,10.15,13.8];let click=clickTimes[step];let hover=ease((t-(click-0.55))/.45);if(finished)hover=0;
+const tx=(a.left-b.left+a.width*.78)/scale,ty=(a.top-b.top+a.height*.55)/scale;
+cursor.style.display=t>.25&&!finished?'block':'none';cursor.style.left=(tx+(1-hover)*65)+'px';cursor.style.top=(ty+(1-hover)*75)+'px';
+const ripple=document.getElementById('ripple');const delta=t-click;if(delta>=0&&delta<.3&&!finished){const size=20+delta*150;ripple.style.display='block';ripple.style.width=ripple.style.height=size+'px';ripple.style.left=(tx-size/2)+'px';ripple.style.top=(ty-size/2)+'px';ripple.style.opacity=String(1-delta/.3);target.style.background='#009abc';target.style.transform='scale(.985)';}else{ripple.style.display='none'}
+animateScene(t);
+};
+window.resetDemo=function(){document.body.classList.remove('playing');step=0;finished=false;Object.keys(data).forEach(k=>data[k]='');content.style.opacity='1';content.style.transform='';document.getElementById('cursor').style.display='none';document.getElementById('ripple').style.display='none';show();};
+
+const ambient=document.getElementById('ambient');const paint=ambient.getContext('2d');
+function animateScene(t){
+paint.clearRect(0,0,1080,1920);
+const blobs=[[200+Math.sin(t*.35)*150,440+Math.cos(t*.26)*180,380,'#32d2ef'],[880+Math.cos(t*.28)*140,900+Math.sin(t*.32)*230,480,'#259dce'],[200+Math.sin(t*.4)*120,1570+Math.cos(t*.3)*170,390,'#236abd']];
+for(const [x,y,r,c] of blobs){const g=paint.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c+'95');g.addColorStop(1,c+'00');paint.fillStyle=g;paint.fillRect(0,0,1080,1920)}
+// Broad flowing liquid ribbons, with a reflective edge.
+for(let j=0;j<3;j++){
+const baseline=390+j*620;const flow=x=>baseline+110*Math.sin(x/260+t*.5+j)+36*Math.cos(x/105-t*.34);
+const grad=paint.createLinearGradient(0,baseline-180,1080,baseline+180);grad.addColorStop(0,'#1bb5d500');grad.addColorStop(.28,'#25ceee38');grad.addColorStop(.55,'#a2f8ff62');grad.addColorStop(.8,'#198cae25');grad.addColorStop(1,'#6ceeff00');
+paint.beginPath();for(let x=-80;x<1161;x+=8){const y=flow(x);if(x===-80)paint.moveTo(x,y);else paint.lineTo(x,y)}for(let x=1160;x>=-80;x-=8)paint.lineTo(x,flow(x)+66+Math.sin(x/170+t*.3)*35);paint.closePath();paint.fillStyle=grad;paint.fill();
+const edge=paint.createLinearGradient(0,0,1080,0);edge.addColorStop(0,'#6af2ff00');edge.addColorStop(.3,'#c9ffffa0');edge.addColorStop(.6,'#56e3fbaa');edge.addColorStop(1,'#6af2ff00');paint.strokeStyle=edge;paint.lineWidth=3;paint.beginPath();for(let x=-80;x<1161;x+=8){if(x===-80)paint.moveTo(x,flow(x));else paint.lineTo(x,flow(x))}paint.stroke();
+}
+document.querySelector('.card')?.style.setProperty('--sheen',(380+Math.sin(t*.5)*520)+'px');
+
+for(let j=0;j<22;j++){const x=(j*127+70+Math.sin(t*.6+j)*25)%1080;const y=(j*181+80-t*18+1920)%1920;paint.fillStyle=j%2?'#ffffffc0':'#69d8ed65';paint.beginPath();paint.arc(x,y,j%3===0?4:2,0,Math.PI*2);paint.fill()}
+document.querySelectorAll('.sphere').forEach((el,j)=>{el.style.animation='none';el.style.transform='translate('+Math.sin(t*.6+j)*12+'px,'+Math.cos(t*.7+j)*20+'px)'});
+document.querySelectorAll('.glass-ring').forEach((el,j)=>{el.style.transform='translateY('+Math.sin(t*.4+j)*20+'px) rotateX('+(44+Math.sin(t*.4)*9)+'deg) rotateY('+(j*22)+'deg) rotateZ('+(-28+t*4+j*42)+'deg)'});
+}
+let sceneFrame;let sceneStart=performance.now();function liveScene(now){if(!document.body.classList.contains('playing'))animateScene((now-sceneStart)/1000);sceneFrame=requestAnimationFrame(liveScene)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)sceneFrame=requestAnimationFrame(liveScene);else animateScene(0);
+window.showCover=function(){
+document.querySelectorAll('.brand,.headline,.tag,.card,.below,.handle,.orb,#cursor,#ripple').forEach(el=>el.style.display='none');document.body.classList.add('playing');animateScene(4);
+const cover=document.createElement('div');cover.className='cover-surface';cover.innerHTML=`<h1 class="cover-title"><span class="first">LIQUID GLASS</span><span class="second">CONTACT FORM</span></h1>
+<div class="cover-bubble big"><div class="cover-avatar"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.8"><circle cx="20" cy="13" r="6"/><path d="M9 32v-4c0-9 22-9 22 0v4"/></svg></div><i class="cover-line a"></i><i class="cover-line b"></i><i class="cover-line c"></i><i class="cover-line d"></i></div>
+<div class="cover-bubble small"><i class="cover-line a"></i><i class="cover-line b"></i><i class="cover-line c"></i></div>
+<div class="cover-envelope"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="8" y="14" width="48" height="36" rx="8"/><path d="m10 19 22 16 22-16"/></svg></div>
+<svg class="cover-spark" viewBox="0 0 40 40" fill="currentColor"><path d="M20 0c1 16 4 19 20 20-16 1-19 4-20 20-1-16-4-19-20-20C16 19 19 16 20 0Z"/></svg>
+<div class="cover-handle">@codewithrishabh3596</div>`;document.getElementById('stage').appendChild(cover);scrollTo(0,0);
+};
+
+</script>
+</body>
+</html>
