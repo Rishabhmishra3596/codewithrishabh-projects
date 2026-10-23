@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A Heart Made of Words</title><style>body{margin:0;background:#08090d;color:white;font-family:system-ui;text-align:center}h1{font-size:24px}p{color:#ff7a25}canvas{display:block;width:min(100%,720px);margin:auto}pre{text-align:left;overflow:auto;margin:20px auto;padding:20px;background:#0d1117;max-width:680px;color:#d2d9e6}</style><h1>A Heart Made of Words</h1><p>@codewithrishabh3596</p><canvas width="720" height="570"></canvas><pre id="source"></pre><script>function drawTextHeart(ctx, seconds, width, height) {
+  ctx.fillStyle = '#07080b';
+  ctx.fillRect(0, 0, width, height);
+  const turn = 0.48 * Math.sin(seconds * 0.7);
+  const shape = a => [16*Math.sin(a)**3,
+    -(13*Math.cos(a)-5*Math.cos(2*a)
+      -2*Math.cos(3*a)-Math.cos(4*a))];
+  const path = []; let length = 0, last;
+  for (let i=0; i<=1000; i++) {
+    const [x,y] = shape(i/1000*Math.PI*2);
+    if(last) length += Math.hypot(x-last.x,y-last.y);
+    path.push({x,y,length}); last={x,y};
+  }
+  const points = [], unit = Math.min(width,height)/46;
+  for (let layer=0; layer<5; layer++) {
+    for (let i=0; i<24; i++) {
+      const p=path.find(p=>p.length >= i/24*length);
+      const depth=(layer-2)*12;
+      const z=-p.x*unit*Math.sin(turn)+depth*Math.cos(turn);
+      const perspective=750/(750-z);
+      const x=(p.x*unit*Math.cos(turn)+depth*Math.sin(turn))*perspective;
+      const y=p.y*unit*perspective+(layer-2)*13;
+      points.push({x,y,z});
+    }
+  }
+  points.sort((a,b)=>a.z-b.z);
+  for (const p of points) {
+    ctx.save();
+    ctx.translate(width/2+p.x,height/2+p.y-10);
+    ctx.rotate(-0.48);
+    ctx.font='12px DejaVu, sans-serif';
+    ctx.textAlign='center';
+    ctx.fillStyle=`rgba(245,158,201,${0.6+(p.z+120)/600})`;
+    ctx.fillText('I love you',0,0);
+    ctx.restore();
+  }
+}
+
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');document.querySelector('#source').textContent="function drawTextHeart(ctx, seconds, width, height) {\n  ctx.fillStyle = '#07080b';\n  ctx.fillRect(0, 0, width, height);\n  const turn = 0.48 * Math.sin(seconds * 0.7);\n  const shape = a => [16*Math.sin(a)**3,\n    -(13*Math.cos(a)-5*Math.cos(2*a)\n      -2*Math.cos(3*a)-Math.cos(4*a))];\n  const path = []; let length = 0, last;\n  for (let i=0; i<=1000; i++) {\n    const [x,y] = shape(i/1000*Math.PI*2);\n    if(last) length += Math.hypot(x-last.x,y-last.y);\n    path.push({x,y,length}); last={x,y};\n  }\n  const points = [], unit = Math.min(width,height)/46;\n  for (let layer=0; layer<5; layer++) {\n    for (let i=0; i<24; i++) {\n      const p=path.find(p=>p.length >= i/24*length);\n      const depth=(layer-2)*12;\n      const z=-p.x*unit*Math.sin(turn)+depth*Math.cos(turn);\n      const perspective=750/(750-z);\n      const x=(p.x*unit*Math.cos(turn)+depth*Math.sin(turn))*perspective;\n      const y=p.y*unit*perspective+(layer-2)*13;\n      points.push({x,y,z});\n    }\n  }\n  points.sort((a,b)=>a.z-b.z);\n  for (const p of points) {\n    ctx.save();\n    ctx.translate(width/2+p.x,height/2+p.y-10);\n    ctx.rotate(-0.48);\n    ctx.font='12px DejaVu, sans-serif';\n    ctx.textAlign='center';\n    ctx.fillStyle=`rgba(245,158,201,${0.6+(p.z+120)/600})`;\n    ctx.fillText('I love you',0,0);\n    ctx.restore();\n  }\n}\n";const start=performance.now();function tick(ms){drawTextHeart(ctx,(ms-start)/1000,720,570);requestAnimationFrame(tick)}requestAnimationFrame(tick);</script></html>
