@@ -1,0 +1,9 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9f0ff; overflow-x: hidden; }
+#studio { position: relative; width: 941px; height: 1672px; transform-origin: top center; margin: 0 auto; }
+#scene { display: block; width: 941px; height: 1672px; }
+.swatches { position: absolute; left: 232px; top: 867px; display: flex; gap: 24px; }
+.swatches button { width: 58px; height: 58px; border-radius: 50%; }
+button { background: transparent; border: none; cursor: pointer; }
+button:focus-visible { outline: 3px solid #102d70; outline-offset: 5px; }
+#explore { position: absolute; left: 500px; top: 852px; width: 250px; height: 85px; border-radius: 43px; }
