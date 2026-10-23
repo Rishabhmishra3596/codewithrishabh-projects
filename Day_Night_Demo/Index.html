@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day–Night Toggles | Code With Rishabh</title>
+  <style>
+/* DAY–NIGHT TOGGLES — @codewithrishabh3596
+   --night travels from 0 to 1 when the native checkbox is checked.
+   No JavaScript, images, fonts, or libraries are required. */
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #00172f;
+  color: #f6f9ff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100% - 40px, 760px); margin: 70px auto 35px; }
+.brand { color: #63dfc3; font-weight: 700; font-size: 14px; }
+h1 { font-size: clamp(32px, 6vw, 54px); line-height: 1.1; margin: 24px 0 18px; }
+.intro, .hint, footer { color: #a1b7cb; line-height: 1.6; }
+.demo { margin: 28px 0; padding: 28px 20px; background: #0b2540; border: 1px solid #24425e; border-radius: 22px; text-align: center; }
+h2 { font-size: 18px; margin: 0 0 28px; }
+.hint { font-size: 13px; margin: 24px 0 0; }
+footer { font-size: 12px; text-align: center; margin-top: 36px; }
+
+.toggle {
+  /* Change this font-size to scale the complete component proportionally. */
+  font-size: clamp(24px, 7.6vw, 44px);
+  display: inline-block;
+  position: relative;
+  width: 8em;
+  height: 3.6em;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.toggle input {
+  /* Hidden visually; still focusable, keyboard-operable and screen-reader accessible. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.track {
+  --night: 0;
+  display: block;
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 2em;
+  background: #80c8ed;
+  box-shadow: inset 0 .12em .28em #12385038, 0 .3em .5em #0002;
+}
+.track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(#08162f, #24426f);
+  opacity: var(--night);
+  transition: opacity .8s ease;
+}
+.toggle input:checked + .track { --night: 1; }
+.toggle input:focus-visible + .track { outline: .08em solid #61efcf; outline-offset: .15em; }
+.stars {
+  position: absolute;
+  top: .28em;
+  left: .6em;
+  color: #fff;
+  font-size: .48em;
+  letter-spacing: .45em;
+  white-space: nowrap;
+  text-shadow: 0 0 .25em #bee4ff;
+  opacity: var(--night);
+  transform: translateY(calc((1 - var(--night)) * -.8em));
+  transition: opacity .8s ease, transform .8s ease;
+}
+.cloud {
+  position: absolute;
+  width: 1.5em;
+  height: .35em;
+  border-radius: 1em;
+  background: #eaf8ff;
+  opacity: calc(1 - var(--night));
+  transform: translateY(calc(var(--night) * 1em));
+  transition: opacity .65s ease, transform .8s ease;
+}
+.cloud::before {
+  content: "";
+  position: absolute;
+  width: .6em;
+  height: .6em;
+  top: -.3em;
+  left: .4em;
+  border-radius: 50%;
+  background: inherit;
+}
+.cloud-one { right: .5em; top: 2.1em; }
+.cloud-two { right: 2.5em; top: 1.1em; scale: .68; }
+.knob {
+  position: absolute;
+  width: 2.8em;
+  height: 2.8em;
+  left: .4em;
+  top: .4em;
+  border-radius: 50%;
+  transform: translateX(calc(var(--night) * 4.4em));
+  transition: transform .8s cubic-bezier(.4, 0, .2, 1), background .8s ease, box-shadow .8s ease;
+}
+.celestial {
+  background: #ffe38b;
+  box-shadow: 0 0 0 .35em #fff2, 0 0 0 .7em #fff1, 0 .12em .18em #2343;
+}
+input:checked + .track .celestial { background: #dce8f2; box-shadow: inset -.18em -.08em #aec2d8, 0 .12em .18em #0003; }
+.crater { position: absolute; background: #a8bfd5; border-radius: 50%; opacity: var(--night); transition: opacity .8s ease; }
+.crater-one { width: .65em; height: .65em; left: .5em; top: .65em; }
+.crater-two { width: .37em; height: .37em; left: 1.5em; top: 1.65em; }
+.crater-three { width: .25em; height: .25em; left: 1.9em; top: .75em; }
+
+/* DROID VARIATION */
+.sun, .moon { position: absolute; width: .85em; height: .85em; top: .6em; border-radius: 50%; transition: opacity .8s ease, transform .8s ease; }
+.sun { right: 1em; background: #fff2ad; opacity: calc(1 - var(--night)); transform: translateY(calc(var(--night) * 1.4em)); box-shadow: 0 0 .5em #fff6; }
+.moon { left: .7em; background: #d9e9f5; box-shadow: inset -.15em -.08em #abc3d9; opacity: var(--night); transform: translateY(calc((1 - var(--night)) * 1.4em)); }
+.moon::after { content: ""; position: absolute; width: .2em; height: .2em; left: .2em; top: .25em; border-radius: 50%; background: #abc3d9; box-shadow: .25em .22em 0 -.03em #abc3d9; }
+.dune { position: absolute; width: 11em; height: 2em; left: -1em; bottom: -1em; border-radius: 50%; }
+.dune-back { background: #d9ba83; bottom: -.65em; transform: rotate(10deg); }
+.dune-front { background: #b98957; transform: rotate(-7deg); }
+.droid {
+  position: absolute;
+  width: 2.6em;
+  height: 3.2em;
+  left: .35em;
+  bottom: .23em;
+  transform: translateX(calc(var(--night) * 4.65em));
+  transition: transform .85s cubic-bezier(.4, 0, .2, 1);
+  filter: drop-shadow(0 .12em .06em #30291d38);
+}
+.droid-body {
+  position: absolute;
+  width: 2.6em;
+  height: 2.6em;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  border: .045em solid #d0d9da;
+  background: radial-gradient(circle at 35% 25%, #fff 40%, #f3f0e7 68%, #bdc2c4);
+  transform: rotate(calc(var(--night) * 360deg));
+  transition: transform .85s cubic-bezier(.4, 0, .2, 1);
+}
+.droid-body::before { content: ""; position: absolute; width: 1.5em; height: 1.5em; border: .2em solid #ea9035; border-radius: 50%; left: .5em; top: .5em; box-shadow: 0 0 0 .04em #c6ced0, inset 0 0 0 .04em #c6ced0; }
+.droid-body::after { content: ""; position: absolute; left: 49%; top: 0; bottom: 0; width: .025em; background: #bbc7cb; transform: rotate(-35deg); }
+.droid-body i { position: absolute; width: .8em; height: .8em; border: .14em solid #e89138; border-radius: 50%; left: -.42em; top: .65em; }
+.droid-body i:nth-child(2) { left: 2.15em; top: .8em; }
+.droid-body i:nth-child(3) { left: .9em; top: 2.15em; }
+.droid-head { position: absolute; width: 1.7em; height: .92em; left: .45em; top: -.04em; z-index: 2; border-radius: 1em 1em .17em .17em; background: linear-gradient(110deg, #fff, #e5e8e7); border-bottom: .12em solid #a6b2b8; box-shadow: 0 .06em 0 -.015em #fff, 0 .1em .06em #0002; }
+.droid-head::after { content: ""; position: absolute; left: .08em; right: .08em; top: .57em; height: .11em; border-radius: .1em; background: #e98a30; }
+.droid-head b { position: absolute; width: .36em; height: .36em; left: .65em; top: .23em; border: .045em solid #bdcbd0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #70b8dd 10%, #152130 25% 65%, #445366 70%); }
+.droid-head i { position: absolute; width: .14em; height: .14em; left: 1.22em; top: .42em; background: #283b4c; border-radius: 50%; }
+.antenna { position: absolute; top: -.32em; left: 1.05em; width: .035em; height: .42em; background: #9eafb8; transform: rotate(-6deg); box-shadow: .28em .1em 0 -.008em #9eafb8; }
+
+/* Respect the visitor's operating-system motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  .toggle *, .toggle *::before, .toggle *::after { transition: none !important; }
+}
+@media (max-width: 400px) {
+  main { width: min(100% - 24px, 760px); margin-top: 36px; }
+  .demo { padding-inline: 12px; }
+}
+
+</style>
+</head>
+<body>
+  <main>
+    <p class="brand">@codewithrishabh3596</p>
+    <h1>A little switch.<br>A whole new mood.</h1>
+    <p class="intro">Two day–night toggle variations. Pure HTML and CSS.</p>
+
+    <section class="demo" aria-labelledby="sun-title">
+      <h2 id="sun-title">Sun &amp; Moon</h2>
+      <label class="toggle sun-toggle">
+        <input type="checkbox" role="switch" aria-label="Sun and moon: night mode">
+        <span class="track" aria-hidden="true">
+          <span class="stars">✦ · ✧ · ✦</span>
+          <span class="cloud cloud-one"></span>
+          <span class="cloud cloud-two"></span>
+          <span class="knob celestial">
+            <span class="crater crater-one"></span>
+            <span class="crater crater-two"></span>
+            <span class="crater crater-three"></span>
+          </span>
+        </span>
+      </label>
+      <p class="hint">Click the switch, or press Tab and Space.</p>
+    </section>
+
+    <section class="demo" aria-labelledby="droid-title">
+      <h2 id="droid-title">Droid Toggle</h2>
+      <label class="toggle droid-toggle">
+        <input type="checkbox" role="switch" aria-label="Droid: night mode">
+        <span class="track" aria-hidden="true">
+          <span class="stars">✦ · ✧ · ✦</span>
+          <span class="sun"></span>
+          <span class="moon"></span>
+          <span class="cloud cloud-one"></span>
+          <span class="cloud cloud-two"></span>
+          <span class="dune dune-back"></span>
+          <span class="dune dune-front"></span>
+          <span class="droid">
+            <span class="droid-body"><i></i><i></i><i></i></span>
+            <span class="droid-head"><b></b><i></i></span>
+            <span class="antenna"></span>
+          </span>
+        </span>
+      </label>
+      <p class="hint">The body rolls while the head stays upright.</p>
+    </section>
+    <footer>Built with HTML + CSS · Code With Rishabh</footer>
+  </main>
+</body>
+</html>
