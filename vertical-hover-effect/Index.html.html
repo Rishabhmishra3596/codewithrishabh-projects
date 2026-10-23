@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Code With Rishabh — @codewithrishabh3596">
+  <title>Vertical Hover Effect | Code With Rishabh</title>
+  <style>
+:root {
+  color-scheme: dark;
+  --page: #202126;
+  --card: #191a20;
+  --accent: #ff6598;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  background: var(--page);
+  color: #f7f8ff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+main { padding: 32px 16px; text-align: center; }
+h1 { margin: 0 0 12px; font-size: clamp(24px, 5vw, 36px); }
+.hint, .credit { color: #a1a9b6; font-size: 14px; }
+.hint { margin-bottom: 32px; }
+.cards {
+  display: flex;
+  gap: 12px;
+  width: min(540px, 90vw);
+  height: min(420px, 58svh);
+  min-height: 240px;
+  margin-inline: auto;
+}
+.card {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+  cursor: pointer;
+  transition: flex .5s ease;
+}
+.card span {
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--accent);
+  font: 700 14px Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+  transform: rotate(-90deg);
+  transition: transform .5s ease;
+}
+.card:hover,
+.card:focus-visible { flex: 5; }
+.card:hover span,
+.card:focus-visible span { transform: rotate(0deg); }
+.card:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+.credit { margin-top: 32px; }
+a { color: var(--accent); text-underline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .card, .card span { transition: none; }
+}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Vertical Hover Effect</h1>
+    <p class="hint" id="instructions">Hover over a card, or use Tab to focus it.</p>
+    <div class="cards" role="group" aria-label="Expanding cards" aria-describedby="instructions">
+      <button class="card" type="button"><span>CARD 01</span></button>
+      <button class="card" type="button"><span>CARD 02</span></button>
+      <button class="card" type="button"><span>CARD 03</span></button>
+    </div>
+    <p class="credit">Made by <a href="https://www.instagram.com/codewithrishabh3596/">@codewithrishabh3596</a></p>
+  </main>
+</body>
+</html>
