@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Liquid Glass Login — Code With Rishabh</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="source-preview.js" defer></script>
+</head>
+<body>
+<main class="scene">
+  <h1 class="sr-only">Liquid Glass Login</h1>
+  <img class="art" src="assets/glass-scene.png" alt="">
+  <form id="login" aria-label="Login animation demo">
+    <label class="sr-only" for="email">Email</label>
+    <input id="email" type="email" required
+      placeholder="" autocomplete="email">
+    <label class="sr-only" for="password">Password, 8 or more characters</label>
+    <input id="password" type="password" required
+      minlength="8" placeholder="" autocomplete="current-password">
+    <button id="eye" type="button" aria-label="Show password" aria-pressed="false"></button>
+    <button id="submit" type="submit">Log in →</button>
+  </form>
+  <img id="loader" src="assets/liquid-ring.png" alt="" hidden>
+  <svg id="check" viewBox="0 0 100 100" aria-hidden="true" hidden>
+    <path d="M20 52 L42 72 L82 30" />
+  </svg>
+  <svg id="cursor" viewBox="0 0 48 60" aria-hidden="true" hidden>
+    <path d="M4 3 L7 44 L17 32 L29 53 L38 48 L27 29 L44 25 Z" />
+  </svg>
+  <section class="code code-html" aria-label="HTML source"><pre></pre></section>
+  <section class="code code-css" aria-label="CSS source"><pre></pre></section>
+  <section class="code code-js" aria-label="JavaScript source"><pre></pre></section>
+  <p id="message" role="status">Interactive UI demo</p>
+  <button id="reset" type="button">Try again ↻</button>
+</main>
+</body>
+</html>

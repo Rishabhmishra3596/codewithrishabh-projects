@@ -1,0 +1,43 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #d6dfff; color: #10194e; font-family: Arial, sans-serif; }
+.scene { position: relative; max-width: 1080px; margin: auto; container-type: inline-size; }
+.art { display: block; width: 100%; height: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); }
+input, button { font: inherit; }
+input { position: absolute; left: 19.8%; width: 27%; height: 3.8%;
+  border: 0; border-radius: 1cqw; background: transparent;
+  color: #10194e; padding: 0; font-size: 2.25cqw; }
+#email { top: 39.1%; }
+#password { top: 44.2%; }
+input:focus-visible { outline: 2px solid #8d59e6; outline-offset: 3px; }
+button { cursor: pointer; border: 0; }
+#submit { position: absolute; top: 49.75%; left: 11.5%; width: 43%; height: 4.8%;
+  color: white; font-weight: 700; font-size: 2.8cqw; background: transparent;
+  border-radius: 99px; transition: transform .16s; }
+#submit:active { transform: scale(.96); }
+#submit:focus-visible { outline: 3px solid #fff; }
+#submit:disabled { cursor: wait; }
+#eye { position: absolute; left: 49%; top: 44.2%; width: 4.2%; height: 3.6%; background: transparent; }
+#loader { position: absolute; left: 72.8%; top: 24.0%; width: 16%; height: auto; }
+#loader:not([hidden]) { animation: spin 1.2s linear infinite; }
+#check { position: absolute; left: 76.1%; top: 46.9%; width: 9.8%; height: auto; }
+#check path { fill: none; stroke: white; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+#check:not([hidden]) { animation: pop .45s ease-out; }
+#cursor { position: absolute; width: 4.7%; height: auto; pointer-events: none; }
+#cursor path { fill: white; stroke: #17204b; stroke-width: 2.7; stroke-linejoin: round; }
+.code { position: absolute; top: 68.1%; width: 28.8%; height: 23.8%; overflow: hidden; }
+.code-html { left: 5.5%; }
+.code-css { left: 38%; }
+.code-js { left: 70.1%; width: 24.8%; }
+.code pre { margin: 0; color: #cddaf1; white-space: pre-wrap; overflow-wrap: anywhere;
+  font: 1.38cqw/1.92cqw 'Courier New', monospace; }
+.code-html pre { color: #e8a7dc; }
+.code-css pre { color: #f2d089; }
+.code-js pre { color: #a6e7ed; }
+#message { position: absolute; top: 55.7%; left: 10%; width: 47%; margin: 0;
+  font-size: 1.35cqw; text-align: center; color: #505c8f; }
+#reset { position: absolute; top: 93.25%; right: 4.5%; color: #515b87;
+  background: #ffffff66; border-radius: 99px; padding: .5cqw 1cqw; font-size: 1.25cqw; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pop { from { transform: scale(.65); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
