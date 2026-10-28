@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00172f">
+  <title>Modern Mechanical Clock | CodeWithRishabh</title>
+  <style>
+    :root { color-scheme: dark; --navy: #00172f; --green: #24efa4; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100svh; display: grid; place-items: center;
+      background: radial-gradient(ellipse at 50% 65%, #073764 0, var(--navy) 60%);
+      color: #f3f8ff; font-family: system-ui, sans-serif;
+    }
+    main { width: min(94%, 760px); padding: 36px 12px; text-align: center; }
+    .brand { font-size: clamp(14px, 2.7vw, 18px); font-weight: 750; letter-spacing: .025em; }
+    h1 { margin: 14px 0 8px; font-size: clamp(24px, 5vw, 40px); color: var(--green); }
+    .stack { color: #8babca; margin: 0 0 42px; letter-spacing: .22em; font-size: 13px; }
+    .clock {
+      position: relative; width: min(100%, 580px); aspect-ratio: 1;
+      margin: auto; border-radius: 50%; isolation: isolate;
+      filter: drop-shadow(0 26px 24px #0008);
+    }
+    .bezel {
+      position: absolute; inset: 0; border-radius: inherit;
+      background: conic-gradient(from 15deg, #131e29, #8e9ca8 12%, #e0e7ec 19%,
+        #687783 29%, #17232e 38%, #a9bac6 48%, #e9eef3 56%, #52616e 64%,
+        #17222d 74%, #899aa8 86%, #e2e9ee 91%, #131e29);
+      box-shadow: inset 0 0 2px 2px #d5e0e8, inset 0 0 6px 5px #111d29,
+        inset 0 0 2px 9px #a5b4bf, 0 0 0 1px #98acc055;
+      animation: assemble-bezel 1.2s cubic-bezier(.22,1,.36,1) both;
+    }
+    .bezel::after {
+      content: ""; position: absolute; inset: 3.1%; border: 2px solid #aebec388;
+      border-radius: inherit; box-shadow: 0 0 0 4px #0c192bbb, inset 0 0 7px #000;
+    }
+    .dial {
+      position: absolute; inset: 5.1%; border-radius: 50%; overflow: hidden;
+      background: radial-gradient(circle at 34% 22%, #1b425b88, transparent 43%),
+        repeating-conic-gradient(from 0deg, #ffffff03 0deg .3deg, transparent .3deg 1.4deg),
+        radial-gradient(circle, #073458, #05243f 58%, #011527 100%);
+      box-shadow: inset 0 0 20px 4px #000a, inset 0 0 0 1px #9ebfd655;
+      animation: reveal-dial .9s .45s both;
+    }
+    .dial::before {
+      content: ""; position: absolute; inset: 5%; border: 1px solid #9bc2dc44; border-radius: 50%;
+    }
+    .tick {
+      position: absolute; inset: 0; transform: rotate(var(--angle));
+    }
+    .tick::before {
+      content: ""; position: absolute; top: 3.3%; left: 49.83%; width: .34%; height: 2.2%;
+      background: #d6e9f5; box-shadow: 1px 1px 2px #0008;
+      animation: marker-in .45s var(--delay) both;
+    }
+    .tick.major::before {
+      top: 2.5%; left: 49.2%; width: 1.6%; height: 6.2%;
+      background: linear-gradient(90deg,#92a6b4,#fff 48%,#a3bacb);
+      box-shadow: 2px 3px 3px #0009;
+    }
+    .numeral {
+      position: absolute; font-size: clamp(20px, 5.5vw, 37px); font-weight: 800;
+      line-height: 1; text-shadow: 2px 3px 2px #0008;
+      animation: reveal-dial .6s 1.4s both;
+    }
+    .n12 { top: 11%; left: 50%; translate: -50% 0; }
+    .n3 { right: 11%; top: 50%; translate: 0 -50%; }
+    .n6 { bottom: 11%; left: 50%; translate: -50% 0; }
+    .n9 { left: 11%; top: 50%; translate: 0 -50%; }
+    .mechanism { position: absolute; inset: 0; animation: assemble-hands 1s 1.8s both; }
+    .hand {
+      position: absolute; inset: 0; transform: rotate(var(--rotation, 0deg));
+      filter: drop-shadow(3px 4px 2px #0009); will-change: transform;
+    }
+    .hand::before {
+      content: ""; position: absolute; left: 47.8%; width: 4.4%; bottom: 47%;
+      background: linear-gradient(90deg,#078d70,#27ffc0 35%,#c0ffe8 48%,#16d99c 62%,#009c77);
+      clip-path: polygon(50% 0,100% 9%,72% 94%,50% 100%,28% 94%,0 9%);
+    }
+    .hour::before { height: 33%; }
+    .minute::before { height: 45%; left: 48.25%; width: 3.5%; }
+    .second::before {
+      left: 49.72%; width: .56%; height: 51%; bottom: 42%;
+      background: linear-gradient(90deg,#ffb950,#ff8a20); clip-path: none;
+    }
+    .pin {
+      position: absolute; left: 50%; top: 50%; width: 8%; aspect-ratio: 1;
+      translate: -50% -50%; border-radius: 50%; background: #071b2c;
+      border: 2px solid #b8d6e6; box-shadow: 2px 4px 4px #0009;
+    }
+    .pin::after {
+      content: ""; position: absolute; inset: 23%; border-radius: 50%;
+      background: #ffb345; box-shadow: inset 1px 1px 2px #fff8;
+    }
+    .glass {
+      position: absolute; inset: 5.1%; pointer-events: none; overflow: hidden;
+      border-radius: 50%; background: linear-gradient(135deg,#cceaff13,transparent 45%);
+    }
+    .glass::after {
+      content: ""; position: absolute; inset: -40%;
+      background: linear-gradient(115deg,transparent 38%,#e1f5ff24 49%,transparent 60%);
+      animation: reflection 2.4s 2.5s both;
+    }
+    .foot { margin: 36px 0 0; font-size: 13px; color: #88a7c1; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--green); }
+    a:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+    @keyframes assemble-bezel {
+      from { opacity: 0; transform: scale(1.12) rotate(-35deg); clip-path: circle(0); }
+      40% { opacity: 1; clip-path: circle(75%); }
+      to { opacity: 1; transform: scale(1) rotate(0); clip-path: circle(75%); }
+    }
+    @keyframes reveal-dial { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes marker-in { from { opacity: 0; translate: 0 -12px; } to { opacity: 1; translate: 0 0; } }
+    @keyframes assemble-hands { from { opacity: 0; transform: scale(.5) rotate(-80deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+    @keyframes reflection { from { transform: translateX(-80%); } to { transform: translateX(80%); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+      .glass::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand">@codewithrishabh3596</div>
+    <h1>Modern Mechanical Clock</h1>
+    <p class="stack">HTML | CSS | JS</p>
+    <div class="clock" role="img" aria-label="Analog clock showing your local time">
+      <div class="bezel" aria-hidden="true"></div>
+      <div class="dial" aria-hidden="true">
+        <div class="markers"></div>
+        <span class="numeral n12">12</span><span class="numeral n3">3</span>
+        <span class="numeral n6">6</span><span class="numeral n9">9</span>
+        <div class="mechanism">
+          <div class="hand hour"></div><div class="hand minute"></div>
+          <div class="hand second"></div><div class="pin"></div>
+        </div>
+      </div>
+      <div class="glass" aria-hidden="true"></div>
+    </div>
+    <p class="foot"><a href="https://codewithrishabh.rishabhmishra9619.workers.dev/">Code, notes &amp; projects ↗</a></p>
+  </main>
+  <script>
+    const markers = document.querySelector('.markers');
+    for (let i = 0; i < 60; i++) {
+      const tick = document.createElement('span');
+      tick.className = i % 5 === 0 ? 'tick major' : 'tick';
+      tick.style.setProperty('--angle', `${i * 6}deg`);
+      tick.style.setProperty('--delay', `${0.75 + i * 0.012}s`);
+      markers.append(tick);
+    }
+    const clock = document.querySelector('.clock');
+    const hourHand = document.querySelector('.hour');
+    const minuteHand = document.querySelector('.minute');
+    const secondHand = document.querySelector('.second');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let previousLabel = '';
+    function update() {
+      const now = new Date();
+      const seconds = now.getSeconds() + (reducedMotion.matches ? 0 : now.getMilliseconds() / 1000);
+      const minutes = now.getMinutes() + seconds / 60;
+      const hours = now.getHours() % 12 + minutes / 60;
+      hourHand.style.setProperty('--rotation', `${hours * 30}deg`);
+      minuteHand.style.setProperty('--rotation', `${minutes * 6}deg`);
+      secondHand.style.setProperty('--rotation', `${seconds * 6}deg`);
+      const label = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      if (label !== previousLabel) {
+        clock.setAttribute('aria-label', `Local time: ${label}`);
+        previousLabel = label;
+      }
+      requestAnimationFrame(update);
+    }
+    update();
+  </script>
+</body>
+</html>
