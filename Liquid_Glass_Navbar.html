@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liquid Glass Navbar | CodeWithRishabh3596</title>
+  <style>
+    /* All styling and scripts are included: no downloads or libraries needed. */
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; --ink: #092c59; --blue: #087cf2; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center;
+      overflow-x: hidden; font-family: system-ui, -apple-system, sans-serif;
+      color: var(--ink); background: linear-gradient(145deg, #f6fcff, #cfeeff 60%, #b8dfff); }
+    .ambient { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; border: 1px solid #ffffffcc;
+      background: radial-gradient(circle at 28% 20%, #fff, #ffffff12 45%, #3ba4ef25 80%, #fff9);
+      box-shadow: inset 0 0 35px #fff8, 0 24px 50px #1575bb18; animation: drift 9s ease-in-out infinite alternate; }
+    .orb:nth-child(1) { width: 360px; height: 360px; left: -100px; top: 12%; }
+    .orb:nth-child(2) { width: 480px; height: 480px; right: -180px; bottom: -60px; animation-delay: -4s; }
+    .orb:nth-child(3) { width: 90px; height: 90px; right: 18%; top: 15%; animation-delay: -2s; }
+    .ribbon { position: absolute; width: 150%; height: 240px; top: 50%; left: -25%;
+      transform: rotate(-18deg); border-radius: 50%; border-top: 2px solid #fff9;
+      box-shadow: 0 -25px 40px #ffffff55, inset 0 20px 40px #6dbdeb22; }
+    @keyframes drift { to { transform: translate(22px, -28px); } }
+    main { position: relative; width: min(900px, 100%); padding: 55px 20px; text-align: center; }
+    .eyebrow { font-size: 12px; font-weight: 750; letter-spacing: .25em; margin: 0 0 16px; }
+    h1 { font-size: clamp(38px, 7vw, 72px); letter-spacing: -.055em; line-height: 1; margin: 0; font-weight: 900; }
+    .subtitle { margin: 20px 0 48px; color: #476c8f; font-size: clamp(15px, 2.5vw, 20px); }
+    /* The translucent shell. backdrop-filter blurs the moving scene behind it. */
+    .navbar { position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
+      width: min(620px, 100%); margin: auto; padding: 9px; gap: 4px;
+      border: 1px solid #ffffffea; border-radius: 42px; background: #ffffff40;
+      backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+      box-shadow: inset 0 2px 2px #fff, inset 0 -3px 8px #6ab3de30, 0 16px 30px #2d79aa25;
+      isolation: isolate; }
+    /* JS measures each button so the pill stays aligned at every screen size. */
+    .active-pill { position: absolute; left: 0; top: 9px; bottom: 9px; z-index: -1;
+      border-radius: 34px; background: linear-gradient(135deg, #ffffffc9, #7ddfff83, #e6fbff99);
+      border: 1px solid #fff; box-shadow: inset 0 1px 7px #fff, 0 3px 12px #288cdc16;
+      transition: transform .48s cubic-bezier(.22, 1, .36, 1), width .48s cubic-bezier(.22, 1, .36, 1); }
+    .tab { appearance: none; border: 0; border-radius: 34px; background: transparent; color: #406586;
+      min-width: 0; padding: 20px 4px 16px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 650;
+      display: flex; flex-direction: column; align-items: center; gap: 10px; transition: color .3s, transform .3s; }
+    .tab svg { width: 30px; height: 30px; stroke: currentColor; stroke-width: 1.8; fill: none;
+      stroke-linecap: round; stroke-linejoin: round; transition: transform .35s; }
+    .tab[aria-selected="true"] { color: var(--blue); }
+    .tab[aria-selected="true"] svg { transform: translateY(-2px); filter: drop-shadow(0 2px 5px #fff); }
+    .tab:hover svg { transform: translateY(-4px); }
+    button:focus-visible { outline: 3px solid #087cf2; outline-offset: 3px; }
+    .panel { margin: 32px auto 0; max-width: 550px; padding: 24px 18px; min-height: 124px;
+      border: 1px solid #ffffff9c; border-radius: 25px; background: #ffffff36; }
+    .panel[hidden] { display: none; }
+    .panel h2 { font-size: 22px; margin: 0 0 9px; letter-spacing: -.03em; }
+    .panel p { font-size: 15px; color: #476c8f; line-height: 1.6; margin: 0; }
+    .panel.enter { animation: reveal .4s ease both; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .demo { display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; padding: 12px 20px;
+      border: 1px solid #ffffffd0; border-radius: 30px; background: #fff7; color: var(--ink);
+      font: inherit; font-size: 13px; font-weight: 650; cursor: pointer; }
+    .dot { width: 7px; height: 7px; background: #087cf2; border-radius: 50%; }
+    footer { margin-top: 38px; font-size: 14px; font-weight: 750; }
+    @media (max-width: 430px) { .navbar { border-radius: 32px; } .tab { font-size: 11px; padding: 17px 0 14px; }
+      .tab svg { width: 25px; height: 25px; } .subtitle { margin-bottom: 35px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="ribbon"></div></div>
+  <main>
+    <p class="eyebrow">HTML / CSS / JAVASCRIPT</p>
+    <h1>LIQUID GLASS<br>NAVBAR</h1>
+    <p class="subtitle">Tap. Slide. Repeat.</p>
+    <div class="navbar" role="tablist" aria-label="Liquid glass navigation">
+      <span class="active-pill" aria-hidden="true"></span>
+      <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg><span>Home</span>
+      </button>
+      <button class="tab" id="tab-explore" role="tab" aria-selected="false" aria-controls="panel-explore" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg><span>Explore</span>
+      </button>
+      <button class="tab" id="tab-projects" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h5l3 4h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg><span>Projects</span>
+      </button>
+      <button class="tab" id="tab-profile" role="tab" aria-selected="false" aria-controls="panel-profile" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>Profile</span>
+      </button>
+    </div>
+    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0"><h2>Welcome home.</h2><p>A little glass. A little motion. A fresh way to navigate.</p></section>
+    <section class="panel" id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" tabindex="0" hidden><h2>Explore new ideas.</h2><p>Try frosted surfaces, soft highlights, and playful interactions.</p></section>
+    <section class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden><h2>Your next UI project.</h2><p>Use this navbar in a portfolio, dashboard, or mobile web app.</p></section>
+    <section class="panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0" hidden><h2>Code with Rishabh.</h2><p>Build beautiful interfaces, one interaction at a time.</p></section>
+    <button class="demo" type="button" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="demo-label">Play demo</span></button>
+    <footer>@codewithrishabh3596</footer>
+  </main>
+  <script>
+    const navbar = document.querySelector('.navbar');
+    const tabs = [...document.querySelectorAll('.tab')];
+    const pill = document.querySelector('.active-pill');
+    const demo = document.querySelector('.demo');
+    let active = 0, timer = null;
+
+    function positionPill() {
+      pill.style.width = tabs[active].offsetWidth + 'px';
+      pill.style.transform = `translateX(${tabs[active].offsetLeft}px)`;
+    }
+    function selectTab(index, focus = false) {
+      active = index;
+      tabs.forEach((tab, i) => {
+        const selected = i === active;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.hidden = !selected;
+        panel.classList.toggle('enter', selected);
+      });
+      positionPill();
+      if (focus) tabs[index].focus();
+    }
+    function stopDemo() {
+      clearInterval(timer); timer = null;
+      demo.setAttribute('aria-pressed', 'false');
+      document.querySelector('.demo-label').textContent = 'Play demo';
+    }
+    tabs.forEach((tab, index) => tab.addEventListener('click', () => { stopDemo(); selectTab(index); }));
+    navbar.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (active + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (active + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); stopDemo(); selectTab(next, true);
+    });
+    demo.addEventListener('click', () => {
+      if (timer) return stopDemo();
+      demo.setAttribute('aria-pressed', 'true');
+      document.querySelector('.demo-label').textContent = 'Pause demo';
+      selectTab((active + 1) % tabs.length);
+      timer = setInterval(() => selectTab((active + 1) % tabs.length), 1600);
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stopDemo(); });
+    new ResizeObserver(positionPill).observe(navbar);
+    selectTab(0);
+  </script>
+</body>
+</html>

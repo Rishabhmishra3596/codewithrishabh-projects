@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Liquid Glass Toggle — Code With Rishabh</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#141b2b;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;align-items:center;flex-direction:column;padding:24px;gap:18px}button{font:inherit}.reel{width:min(100%,540px);aspect-ratio:9/16;position:relative;overflow:hidden;background:#eef7ff;isolation:isolate;color:#162b4f;--p:0}.brand{position:absolute;top:4.5%;left:7%;right:7%;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:clamp(10px,2.6vw,14px);letter-spacing:1px;z-index:4}.mark{border:1px solid currentColor;padding:8px;border-radius:50%;font-size:12px;letter-spacing:0}.hero{height:57%;position:relative;display:flex;align-items:center;flex-direction:column;justify-content:center;overflow:hidden}.orb{position:absolute;border-radius:50%;filter:blur(1px);z-index:-1}.orb.one{width:67%;aspect-ratio:1;left:-20%;top:7%;background:radial-gradient(circle at 30% 25%,#fff9,#91deff65 50%,#55b0ee11 70%)}.orb.two{width:70%;aspect-ratio:1;right:-25%;top:20%;background:radial-gradient(circle at 40% 35%,#d4bfffaa,#bd9aff55 45%,#a28fff05 72%)}.grid{position:absolute;inset:0;z-index:-2;opacity:.2;background-image:linear-gradient(#80a0d025 1px,transparent 1px),linear-gradient(90deg,#80a0d025 1px,transparent 1px);background-size:38px 38px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;margin:29px 0 13px;opacity:.7}.title{font-size:clamp(32px,8.7vw,48px);line-height:1.06;text-align:center;margin:0;font-weight:900;letter-spacing:-2px}.title span{font-weight:400;font-style:italic}.subtitle{margin:15px 0 27px;font-size:15px;opacity:.8}.switch{position:relative;width:270px;height:122px;border:1px solid #ffffffb8;border-radius:80px;background:#ffffff30;backdrop-filter:blur(22px);box-shadow:inset 0 2px 3px #ffffffd9,inset 0 -3px 8px #668ebc38,0 20px 40px #14427825;cursor:pointer;outline-offset:8px;-webkit-tap-highlight-color:transparent}.switch:focus-visible{outline:3px solid #428bff}.switch::after{content:"";position:absolute;inset:7px;border-radius:70px;border:1px solid #fff4;pointer-events:none}.thumb{position:absolute;left:10px;top:10px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 32% 22%,#fff,#ffffffb0 34%,#c1e6ff8c 68%,#77b2ff66);border:1px solid #ffffffc9;box-shadow:inset 0 2px 6px #fff,0 8px 18px #233c7038,inset 0 -5px 8px #98b8e84d;display:grid;place-items:center;z-index:3;overflow:hidden}.thumb::after{content:"";position:absolute;width:60%;height:27%;border-radius:50%;top:6px;left:15px;background:linear-gradient(#fff9,#fff0);transform:rotate(-25deg)}.sun,.moon{position:absolute;width:33px;height:33px}.sun{color:#df9f27}.moon{color:#5379eb}.track-icon{position:absolute;top:42px;width:34px;height:34px;opacity:.35}.track-icon.left{left:41px}.track-icon.right{right:41px}.ripple{position:absolute;left:10px;top:10px;width:100px;height:100px;border:1px solid #ffffffb0;border-radius:50%;pointer-events:none;z-index:2}.status{margin-top:23px;display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:2px}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}.hint{font-size:11px;margin-top:12px;opacity:.65}.editor{position:absolute;left:6%;right:6%;top:58%;height:29%;background:#101726;color:#d5e4fa;border:1px solid #a4b9e133;border-radius:15px;box-shadow:0 15px 35px #112e4c20;overflow:hidden}.editorbar{height:35px;background:#182233;display:flex;align-items:center;gap:6px;padding:0 13px;font-size:10px;color:#9eacc1}.light{height:7px;width:7px;border-radius:50%;background:#ff6571}.light:nth-child(2){background:#f4c168}.light:nth-child(3){background:#69cb9a}.filename{margin-left:12px}.tabs{display:flex;gap:16px;padding:12px 17px 9px;font-size:10px;border-bottom:1px solid #ffffff0c;color:#8595b0}.tabs .active{color:#73d9ee}.code{font-family:Consolas,"Liberation Mono",monospace;font-size:12px;line-height:1.8;padding:9px 17px;white-space:pre;margin:0}.comment{color:#7d91ad}.keyword{color:#c5a1ff}.function{color:#7fe0ed}.string{color:#a3d7a3}.number{color:#fac687}.tag{color:#8dbbff}.foot{position:absolute;top:89%;left:7%;right:7%;text-align:center;z-index:4}.handle{font-size:14px;font-weight:700}.cta{font-size:12px;margin-top:12px;font-weight:700;min-height:20px}.pill{border:1px solid currentColor;border-radius:25px;padding:7px 14px;display:inline-block}.controls{display:flex;gap:10px}.controls button{border:1px solid #ffffff40;padding:10px 18px;background:#293b57;color:white;border-radius:10px;cursor:pointer}.instruction{max-width:540px;font-size:13px;line-height:1.5;color:#bdc8da;text-align:center;margin:0}svg{display:block}body.capture{padding:0;background:#eef7ff;display:block}body.capture .reel{width:100vw;height:100vh;aspect-ratio:auto}body.capture .controls,body.capture .instruction{display:none}body.capture .reel{font-size:2vw}body.capture .brand{font-size:2.6vw}body.capture .mark{font-size:2.3vw;padding:1.5vw}body.capture .eyebrow{font-size:2.3vw;margin-top:5.5vw}body.capture .title{font-size:8.9vw}body.capture .subtitle{font-size:2.8vw;margin:2.8vw 0 5vw}body.capture .switch{width:50vw;height:22.6vw}body.capture .thumb,body.capture .ripple{left:1.85vw;top:1.85vw;width:18.52vw;height:18.52vw}body.capture .sun,body.capture .moon{width:6.1vw;height:6.1vw}body.capture .track-icon{top:7.78vw;width:6.3vw;height:6.3vw}body.capture .track-icon.left{left:7.6vw}body.capture .track-icon.right{right:7.6vw}body.capture .status{font-size:2.3vw;margin-top:4.2vw}body.capture .hint{font-size:2vw;margin-top:2.2vw}body.capture .editorbar{height:6.5vw;font-size:1.9vw;padding:0 2.4vw}body.capture .tabs{font-size:1.9vw;padding:2.2vw 3.1vw 1.7vw}body.capture .code{font-size:2.25vw;padding:1.7vw 3.1vw}body.capture .handle{font-size:2.6vw}body.capture .cta{font-size:2.3vw;margin-top:2.2vw}body.capture .pill{padding:1.3vw 2.6vw}
+
+/* Liquid surface and a quieter composition */
+.editor{transform:translateZ(0)}
+.hero{height:57%;padding-top:30px}.orb{filter:blur(50px);opacity:.32}.orb.one{width:65%;left:-25%;top:30%}.orb.two{width:60%;right:-28%;top:36%}.grid{opacity:.13;background-size:28px 28px}.eyebrow{font-size:10px;letter-spacing:2px}.title{font-size:38px;letter-spacing:-1.5px}.subtitle{font-size:13px;margin-bottom:37px}.switch{width:400px;max-width:85%;height:auto;aspect-ratio:20/9;background:linear-gradient(145deg,#ffffff15,#ffffff05);border:1px solid #ffffff70;box-shadow:inset 0 2px 3px #fff9,inset 0 -2px 4px #fff3,0 22px 35px #183b6b22;backdrop-filter:blur(2px)}.liquid-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.thumb{left:5%;top:11.11%;width:35%;height:77.78%;background:none;border:0;box-shadow:none;overflow:visible;pointer-events:none}.thumb::after{display:none}.thumb .sun,.thumb .moon{width:32%;height:32%;filter:drop-shadow(0 1px 1px #fff8)}.sun{color:#f6bb58}.moon{color:#c6e9ff}.track-icon{top:38%;width:11%;height:24%;opacity:.25}.track-icon.left{left:17%}.track-icon.right{right:17%}.ripple{display:none}.status{margin-top:35px}.editor{border-radius:14px;box-shadow:0 0 35px #62cfff20,0 16px 40px #0002}.editorbar{font-size:10px}.code{line-height:1.7}.foot{top:88.6%}.pill{background:#ffffff08}.brand{font-size:11px}.hint{margin-top:10px}
+body.capture .title{font-size:7.3vw}body.capture .eyebrow{font-size:1.85vw;margin-top:5.5vw}body.capture .subtitle{font-size:2.45vw;margin:2.8vw 0 7vw}body.capture .switch{width:74vw;max-width:85%;height:33.3vw}body.capture .thumb{left:5%;top:11.11%;width:35%;height:77.78%}body.capture .thumb .sun,body.capture .thumb .moon{width:32%;height:32%}body.capture .track-icon{top:38%;width:11%;height:24%}body.capture .track-icon.left{left:17%}body.capture .track-icon.right{right:17%}body.capture .status{margin-top:6.4vw}body.capture .code{font-size:2.3vw;line-height:1.7}body.capture .brand{font-size:2.2vw}body.capture .hint{font-size:2vw}
+
+</style></head>
+<body>
+<main class="reel" id="reel">
+<header class="brand"><span>CODE WITH RISHABH</span><span class="mark">CR</span></header>
+<section class="hero"><div class="grid"></div><div class="orb one"></div><div class="orb two"></div><p class="eyebrow">STRETCH. FLOW. SETTLE.</p><h1 class="title">Liquid Glass<br><span>Toggle Switch</span></h1><p class="subtitle">A little liquid. A whole new mood.</p>
+<button class="switch" id="toggle" role="switch" aria-checked="false" aria-label="Dark theme">
+<svg class="track-icon left" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="20" r="7"/><path d="M20 2v5m0 26v5M2 20h5m26 0h5M7 7l4 4m18 18 4 4M7 33l4-4m18-18 4-4"/></svg>
+<svg class="track-icon right" viewBox="0 0 40 40" fill="currentColor"><path d="M29 29A15 15 0 0 1 13 5a15 15 0 1 0 22 20 15 15 0 0 1-6 4Z"/></svg>
+<svg class="liquid-svg" viewBox="0 0 400 180" aria-hidden="true"><defs>
+<linearGradient id="fluid" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#ffffff" stop-opacity=".72"/><stop offset=".15" stop-color="#d9f5ff" stop-opacity=".24"/><stop offset=".42" stop-color="#8edfff" stop-opacity=".1"/><stop offset=".72" stop-color="#a6b8ff" stop-opacity=".35"/><stop offset="1" stop-color="#e6fbff" stop-opacity=".85"/></linearGradient>
+<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".4" stop-color="#fff" stop-opacity=".15"/><stop offset=".75" stop-color="#82dfff"/><stop offset="1" stop-color="#fff"/></linearGradient>
+<radialGradient id="lens"><stop stop-color="#6ecfff" stop-opacity=".04"/><stop offset=".66" stop-color="#bceaff" stop-opacity=".04"/><stop offset=".9" stop-color="#9bcfff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity=".55"/></radialGradient>
+<pattern id="refraction" width="27" height="27" patternUnits="userSpaceOnUse"><path d="M27 0H0V27" fill="none" stroke="#b3eaff" stroke-width=".7" opacity=".45"/></pattern>
+<clipPath id="liquid-clip"><path id="clip-blob"/></clipPath>
+<filter id="bend" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency=".012 .025" numOctaves="1" seed="4" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="liquid-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#12325c" flood-opacity=".3"/></filter>
+</defs>
+<ellipse id="wave" cx="90" cy="90" rx="70" ry="70" fill="none" stroke="#bceaff" stroke-width="1.2" opacity="0"/>
+<path id="bridge" fill="url(#fluid)" stroke="none"/>
+<path id="blob" fill="url(#fluid)" stroke="url(#edge)" stroke-width="1.6" filter="url(#liquid-shadow)"/>
+<g clip-path="url(#liquid-clip)"><rect id="bent-grid" x="0" y="0" width="400" height="180" fill="url(#refraction)" filter="url(#bend)"/><ellipse id="lens-fill" cx="90" cy="90" rx="70" ry="70" fill="url(#lens)"/><path id="reflection" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" opacity=".85"/><path id="lower-reflection" fill="none" stroke="#aff0ff" stroke-width="3" stroke-linecap="round" opacity=".8"/></g>
+</svg><span class="ripple" id="ripple"></span><span class="thumb" id="thumb"><svg class="sun" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><circle cx="20" cy="20" r="7"/><path d="M20 2v5m0 26v5M2 20h5m26 0h5M7 7l4 4m18 18 4 4M7 33l4-4m18-18 4-4"/></svg><svg class="moon" viewBox="0 0 40 40" fill="currentColor"><path d="M29 29A15 15 0 0 1 13 5a15 15 0 1 0 22 20 15 15 0 0 1-6 4Z"/></svg></span>
+</button><div class="status"><span class="dot"></span><span id="mode">LIGHT MODE</span></div><div class="hint" id="hint">Click to change the mood</div></section>
+<section class="editor" aria-label="Implementation excerpts"><div class="editorbar"><span class="light"></span><span class="light"></span><span class="light"></span><span class="filename">toggle.js — implementation excerpt</span></div><div class="tabs"><span>HTML</span><span>CSS</span><span class="active">JavaScript</span></div><pre class="code"><span class="comment">// Stretch the glass as it moves</span>
+<span class="keyword">const</span> stretch = Math.sin(t * Math.PI);
+<span class="function">drawLiquid</span>(p, stretch, direction);
+
+<span class="comment">// Keep the switch accessible</span>
+toggle.setAttribute(
+  <span class="string">'aria-checked'</span>, p &gt;= <span class="number">0.5</span>);
+<span class="comment">// Full source in the HTML file</span></pre></section>
+<footer class="foot"><div class="handle">@codewithrishabh3596</div><div class="cta" id="cta"><span class="pill">HTML + CSS + JavaScript</span></div></footer>
+</main>
+<div class="controls"><button id="demo">Play 18-second demo</button><button id="restart">Reset</button></div><p class="instruction">Click the toggle or use Tab, then Space/Enter. Demo controls stay outside the recording area. Add ?capture=1 to the URL for a fullscreen 9:16 recording view.</p>
+<script>
+const $ = id => document.getElementById(id);
+const reel=$('reel'),toggle=$('toggle'),thumb=$('thumb'),mode=$('mode'),cta=$('cta'),demo=$('demo');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let progress=0,target=0,animation=0,playing=false;
+const mix=(a,b,p)=>a.map((v,i)=>Math.round(v+(b[i]-v)*p));
+const rgb=a=>`rgb(${a.join(',')})`;
+const ease=x=>x*x*(3-2*x);
+function drawLiquid(p,stretch=0,direction=1,phase=1){
+ const cx=90+220*p,rx=70*(1+.25*stretch),ry=70*(1-.18*stretch);
+ const side=direction,tail=cx-side*(rx+45*stretch),h=15*stretch;
+ let d=`M ${cx} ${90-ry} C ${cx+side*rx*.62} ${90-ry}, ${cx+side*rx} ${90-ry*.62}, ${cx+side*rx} 90 C ${cx+side*rx} ${90+ry*.62}, ${cx+side*rx*.62} ${90+ry}, ${cx} ${90+ry} C ${cx-side*rx*.6} ${90+ry}, ${cx-side*rx*.85} ${90+ry*.55}, ${cx-side*rx*.9} ${90+ry*.32} C ${cx-side*rx} ${90+ry*.12}, ${tail+side*18} ${90+h*.5}, ${tail} ${90+h} Q ${tail-side*15*stretch} 90 ${tail} ${90-h} C ${tail+side*18} ${90-h*.5}, ${cx-side*rx} ${90-ry*.12}, ${cx-side*rx*.9} ${90-ry*.32} C ${cx-side*rx*.85} ${90-ry*.55}, ${cx-side*rx*.6} ${90-ry}, ${cx} ${90-ry} Z`;
+ if(stretch<.005)d=`M ${cx-rx} 90 A ${rx} ${ry} 0 1 0 ${cx+rx} 90 A ${rx} ${ry} 0 1 0 ${cx-rx} 90 Z`;
+ $('blob').setAttribute('d',d);$('clip-blob').setAttribute('d',d);
+ $('bridge').style.opacity=0;
+ $('lens-fill').setAttribute('cx',cx);$('lens-fill').setAttribute('rx',rx);$('lens-fill').setAttribute('ry',ry);
+ $('bent-grid').setAttribute('transform',`translate(${p*18} ${stretch*9}) scale(${1+stretch*.1} 1)`);
+ const glint=p*13+stretch*10;
+ $('reflection').setAttribute('d',`M ${cx-rx*.72+glint} ${90-ry*.32} Q ${cx-rx*.52+glint} ${90-ry*.89} ${cx+rx*.04+glint} ${90-ry*.84}`);
+ $('lower-reflection').setAttribute('d',`M ${cx+rx*.7} ${90+ry*.4} Q ${cx+rx*.42} ${90+ry*.86} ${cx-rx*.06} ${90+ry*.89}`);
+ const wave=phase>.62&&phase<1?(phase-.62)/.38:0;
+ $('wave').setAttribute('cx',cx);$('wave').setAttribute('rx',70+wave*95);$('wave').setAttribute('ry',70+wave*24);$('wave').style.opacity=wave?(1-wave)*.5:0;
+ thumb.style.transform=`translateX(${p*157.142857}%) scale(${1+.1*stretch},${1-.12*stretch})`;
+}
+function render(p,stretch=0,direction=1,phase=1){
+ progress=p;drawLiquid(p,stretch,direction,phase);
+ toggle.setAttribute('aria-checked',p>=.5);
+ reel.style.background=rgb(mix([222,240,248],[9,20,37],p));
+ reel.style.color=rgb(p<.45?[10,30,44]:[242,250,255]);
+ reel.querySelector('.sun').style.opacity=1-p;reel.querySelector('.moon').style.opacity=p;
+ mode.textContent=p>=.5?'DARK MODE':'LIGHT MODE';
+
+}
+function stopDemo(){playing=false;cancelAnimationFrame(animation);demo.disabled=false;demo.textContent='Play 18-second demo';}
+function animateTo(next){
+ cancelAnimationFrame(animation);target=next;const from=progress,start=performance.now(),direction=next>from?1:-1;
+ function tick(now){const t=reduced?1:Math.min((now-start)/950,1),p=from+(next-from)*ease(t);const stretch=Math.sin(t*Math.PI);render(p,stretch,direction,t);if(t<1)animation=requestAnimationFrame(tick);}
+ animation=requestAnimationFrame(tick);
+}
+toggle.addEventListener('click',()=>{stopDemo();animateTo(target?0:1)});
+const starts=[1.2,4,6.8,9.6,12.4,16];
+function seekVideo(seconds){
+ let p=0,stretch=0,direction=1,phase=1;
+ for(let i=0;i<starts.length;i++)if(seconds>=starts[i]){const next=(i+1)%2,from=i%2,t=Math.min((seconds-starts[i])/.95,1);p=from+(next-from)*ease(t);stretch=Math.sin(t*Math.PI);direction=next?1:-1;phase=t;}
+ render(p,stretch,direction,phase);target=p>=.5?1:0;
+ cta.innerHTML=seconds>=12.7&&seconds<16.8?'<span class="pill">Follow + comment “TOGGLE” for code</span>':'<span class="pill">HTML + CSS + JavaScript</span>';
+}
+demo.addEventListener('click',()=>{if(playing)return;stopDemo();playing=true;demo.disabled=true;demo.textContent='Demo playing…';const start=performance.now();function frame(now){if(!playing)return;const t=(now-start)/1000;seekVideo(reduced?Math.floor(t/3)*3:t);if(t<18)animation=requestAnimationFrame(frame);else{seekVideo(0);stopDemo()}}animation=requestAnimationFrame(frame)});
+$('restart').addEventListener('click',()=>{stopDemo();target=0;seekVideo(0)});
+if(new URLSearchParams(location.search).has('capture')){document.body.classList.add('capture');$('hint').textContent='Would you use this on your website?';}
+window.seekVideo=seekVideo;render(0);
+</script></body></html>

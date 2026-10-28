@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order Placed Button | Code With Rishabh</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #202126; color: white; font-family: Arial,sans-serif; }
+main { text-align: center; padding: 24px; }
+h1 { font-size: 24px; margin-bottom: 40px; }
+.toggle { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.order { display: block; position: relative; width: min(340px,85vw); height: 88px; overflow: hidden; border: 1px solid #444; border-radius: 12px; background: #111; box-shadow: 0 10px 25px #0006, inset 0 2px 4px #ffffff15; cursor: pointer; }
+.toggle:focus-visible + .order { outline: 3px solid #3ce992; outline-offset: 5px; }
+.label,.success { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 600; }
+.success { opacity: 0; color: #3ce992; }
+.road { position: absolute; top: 57px; left: -100%; width: 200%; height: 3px; background: repeating-linear-gradient(90deg,#fff 0 16px,transparent 16px 30px); opacity: 0; }
+.truck { position: absolute; left: -150px; top: 18px; width: 135px; height: 54px; opacity: 0; }
+.trailer { position: absolute; width: 92px; height: 43px; background: linear-gradient(#fff,#d6e0f0); border-radius: 3px; }
+.cab { position: absolute; left: 96px; top: 7px; width: 35px; height: 36px; background: #ffb62e; border-radius: 4px 11px 3px 3px; }
+.window { position: absolute; left: 100px; top: 11px; width: 22px; height: 19px; background: #16314a; border-radius: 2px 7px 1px 1px; }
+.wheel { position: absolute; top: 38px; width: 15px; height: 15px; border: 4px solid #30343c; border-radius: 50%; background: #a4afc0; }
+.back { left: 15px; } .front { left: 104px; }
+.toggle:checked + .order .label { animation: hide .25s forwards; }
+.toggle:checked + .order .truck { animation: deliver 3.5s .25s both; }
+.toggle:checked + .order .road { animation: road 3.5s .25s both; }
+.toggle:checked + .order .success { animation: show .4s 3.8s forwards; }
+@keyframes hide { to { opacity: 0; } }
+@keyframes show { to { opacity: 1; } }
+@keyframes deliver {
+ 0% { transform: translateX(0); opacity: 1; }
+ 30%,55% { transform: translateX(230px); opacity: 1; }
+ 99% { transform: translateX(510px); opacity: 1; }
+ 100% { transform: translateX(510px); opacity: 0; }
+}
+@keyframes road { 0%,100% { opacity: 0; } 15%,85% { opacity: .7; } to { transform: translateX(50%); } }
+.hint { margin-top: 28px; color: #a1a9b6; font-size: 14px; }
+a { color: #3ce992; }
+@media(prefers-reduced-motion:reduce) {
+ .toggle:checked + .order .truck,.toggle:checked + .order .road { animation: none; }
+ .toggle:checked + .order .label { animation: none; opacity: 0; }
+ .toggle:checked + .order .success { animation: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Order Placed Button</h1>
+<input class="toggle" id="order" type="checkbox" aria-label="Run order animation; uncheck to reset">
+<label class="order" for="order">
+ <span class="label">Click To Place Order</span>
+ <span class="road" aria-hidden="true"></span>
+ <span class="truck" aria-hidden="true">
+  <span class="trailer"></span><span class="cab"></span>
+  <span class="window"></span>
+  <span class="wheel back"></span><span class="wheel front"></span>
+ </span>
+ <span class="success">Order Placed ✓</span>
+</label>
+<p class="hint">Click again to reset. Keyboard: Tab, then Space.</p>
+<p class="hint">Demo animation only; no order is submitted.</p>
+<p><a href="https://www.instagram.com/codewithrishabh3596/">@codewithrishabh3596</a></p>
+</main>
+</body>
+</html>

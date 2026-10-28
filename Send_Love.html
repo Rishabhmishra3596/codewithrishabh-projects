@@ -1,0 +1,182 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Send Love • Code With Rishabh</title><style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#eee5ff;color:#35204e;font-family:Arial,Helvetica,sans-serif}.reel{position:relative;width:min(100vw,540px);aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:linear-gradient(145deg,#f5eaff,#e1d9ff 45%,#ffd2e2)}body.capture .reel{width:100vw;height:100vh;aspect-ratio:auto}.orb{position:absolute;border-radius:50%;filter:blur(4cqw);opacity:.5}.orb.a{background:#fff3a6;width:70cqw;height:70cqw;top:-30cqw;right:-25cqw}.orb.b{background:#c7faff;width:65cqw;height:65cqw;left:-33cqw;top:70cqw}.grid{position:absolute;inset:0;background-image:radial-gradient(#70578520 1px,transparent 1px);background-size:18px 18px}.top{position:absolute;top:9cqw;left:7cqw;right:7cqw;display:flex;align-items:center;justify-content:space-between;font-size:2.2cqw;letter-spacing:.13cqw;font-weight:bold}.badge{padding:1.5cqw 2.4cqw;border-radius:6cqw;border:1px solid #35204e44;background:#fff7}.intro{position:absolute;top:20cqw;left:7cqw;right:7cqw}h1{font-size:9cqw;line-height:1.01;letter-spacing:-.4cqw;margin:0;font-weight:900}h1 span{color:#db247e}.intro p{font-size:3cqw;margin:3cqw 0 0;line-height:1.5}.stage{position:absolute;left:7cqw;top:49cqw;width:86cqw;height:68cqw;border-radius:5cqw;background:#190c31;overflow:hidden;box-shadow:0 3cqw 7cqw #86588b33;border:1px solid #ffffffb0}.stage::before{content:'';position:absolute;width:48cqw;height:48cqw;border:1px solid #77466550;border-radius:50%;top:10cqw;left:19cqw;box-shadow:0 0 0 8cqw #9754b009,0 0 0 16cqw #9754b005}.stage-top{position:absolute;top:3.2cqw;left:3.5cqw;right:3.5cqw;display:flex;justify-content:space-between;color:#d9b7e7;font-size:2.1cqw;letter-spacing:.2cqw;font-weight:bold}.live{color:#ffa4d3}.stage-footer{position:absolute;bottom:3.2cqw;left:0;right:0;text-align:center;font-size:2.5cqw;color:#dccae7;letter-spacing:.1cqw}canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}.stage-top,.stage-footer{z-index:2}.editor{position:absolute;top:123cqw;left:7cqw;right:7cqw;border-radius:3cqw;background:#35204e;overflow:hidden;box-shadow:0 2cqw 4cqw #78548522;color:#fff}.bar{padding:2.3cqw 3cqw;background:#28143f;font-size:2.5cqw;display:flex;align-items:center;gap:1cqw}.dot{width:1.3cqw;height:1.3cqw;border-radius:50%;background:#ff85b4}.dot:nth-child(2){background:#ffe996}.dot:nth-child(3){background:#76e8e7}.filename{margin-left:2cqw;color:#dbc7e4}pre{margin:0;padding:3cqw;font:2.3cqw/1.45 Consolas,'DejaVu Sans Mono',monospace;white-space:pre-wrap}.pink{color:#ff9ecd}.cyan{color:#7ee9f1}.cream{color:#ffe596}.cta{position:absolute;top:154cqw;left:7cqw;right:7cqw;text-align:center;font-size:3.9cqw;font-weight:bold;line-height:1.4}.cta small{display:block;margin-top:1.1cqw;font-weight:normal;font-size:2.8cqw}.footer{position:absolute;bottom:7.5cqw;left:0;width:100%;text-align:center;font-size:2.7cqw;font-weight:bold}.controls{text-align:center;margin:16px;font-size:14px}.controls button{border:0;padding:10px 18px;background:#35204e;color:white;border-radius:20px;cursor:pointer}.capture .controls{display:none}
+.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}body{background:#fff0bd;color:#49303f}.reel{background:linear-gradient(145deg,#fff0bd,#ffc8bb 60%,#fde1df)}h1 span{color:#ed477c}.orb.a{background:#fff9d6}.orb.b{background:#96e9d8}.stage{background:#e1f7ed}.stage::before{border-color:#86c9b955;box-shadow:0 0 0 8cqw #ffffff25,0 0 0 16cqw #ffffff14}.stage-top{color:#54786b}.live{color:#ed477c}.stage-footer{color:#54786b}.controls button{background:#ed477c}.status{background:#b93e6c}.tab.active{border-top-color:#ed477c}h1{font-size:6cqw}.grid{background-image:radial-gradient(#70578518 1px,transparent 1px)}.send-pill{border:0;border-radius:4cqw;padding:.8cqw 2cqw;background:#ed477c;color:white;font:bold 2cqw Arial;cursor:pointer;box-shadow:0 .4cqw 0 #b72c57}h1 span{margin-left:1cqw}.codecontent{font-size:2cqw}.reel{background:linear-gradient(145deg,#f3e8ff,#efd9ff 48%,#ffd9e4)}.stage{background:#f8eeff}.stage-top{color:#706282}.stage::before{border-color:#c6a8da55}.orb.a{background:#ffdeed}.orb.b{background:#b7f0e8}.send-pill{font-size:3.4cqw;padding:1.2cqw 5cqw;box-shadow:0 .55cqw 0 #ad2257,0 1cqw 3cqw #e6388033;background:#e63880;min-width:29cqw;min-height:5.8cqw}.stage-footer{bottom:2.3cqw}.send-pill:focus-visible{outline:3px solid #49303f}</style></head><body><main class="reel"><div class="orb a"></div><div class="orb b"></div><div class="grid"></div><div class="top"><span>CODE WITH RISHABH</span><span class="badge">HTML • CSS • JS</span></div><div class="intro"><h1>ONE CLICK.<br><span>A LITTLE LOVE.</span></h1><p>This button delivers a little happiness.</p></div><section class="stage" aria-label="An envelope opens and releases a heart letter"><div class="stage-top"><span>SEND LOVE</span><span class="live">CLICK → SMILE</span></div><canvas id="envelope" aria-hidden="true"></canvas><div class="stage-footer"><button id="send" class="send-pill">Send Love ♥</button></div></section><section class="editor" aria-label="VS Code-style source viewer"><div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="filename">Send Love — Visual Studio Code</span></div><div class="tabs"><button class="tab active" data-file="index.html"><span class="html">&lt;&gt;</span> index.html</button><button class="tab" data-file="style.css"><span class="css">#</span> style.css</button><button class="tab" data-file="script.js"><span class="js">JS</span> script.js</button></div><div class="breadcrumbs" id="breadcrumb">send-love › index.html</div><div class="activity"><span>▣</span><span>⌕</span><span>⑂</span><span>▷</span></div><div class="codeviewport"><div class="codecontent" id="sourcecode"></div></div><div class="status"><span>main* &nbsp; ✓ 0 errors</span><span id="language">HTML &nbsp; UTF-8 &nbsp; Spaces: 2</span></div></section><div class="cta">A tiny delivery of happiness. ♥<small>Follow + comment “LOVE” for the code</small></div><div class="footer">@codewithrishabh3596</div></main><div class="controls"><p id="message" role="status" aria-live="polite">A tiny delivery of happiness.</p><button id="replay">Replay animation</button><p>Click Send Love to replay • HTML, CSS, JavaScript</p></div><script>
+const canvas = document.querySelector('#envelope');
+const ctx = canvas.getContext('2d');
+const send = document.querySelector('#send');
+const message = document.querySelector('#message');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const colors = ['#ed477c', '#ff9669', '#28bcb5', '#bb80e0'];
+let playing = false, start = 0, elapsed = 0;
+function smooth(a, b, t) {
+  const p = Math.max(0, Math.min(1, (t - a) / (b - a)));
+  return p * p * (3 - 2 * p);
+}
+function polygon(points, color) {
+  ctx.beginPath();
+  points.forEach(([x, y], i) => {
+    if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+  });
+  ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+}
+function heart(x, y, size, color) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(size, size);
+  ctx.beginPath(); ctx.moveTo(0, 65);
+  ctx.bezierCurveTo(-20, 46, -90, 4, -90, -47);
+  ctx.bezierCurveTo(-90, -98, -28, -108, 0, -69);
+  ctx.bezierCurveTo(28, -108, 90, -98, 90, -47);
+  ctx.bezierCurveTo(90, 4, 20, 46, 0, 65);
+  ctx.fillStyle = color; ctx.fill(); ctx.restore();
+}
+function draw(t) {
+  t = ((t % 8) + 8) % 8;
+  const open = smooth(.5, 1.5, t)
+    * (1 - smooth(7, 7.8, t));
+  const lift = smooth(1.6, 3, t)
+    * (1 - smooth(6, 7, t));
+  ctx.setTransform(canvas.width / 900, 0, 0,
+    canvas.height / 480, 0, 0);
+  ctx.clearRect(0, 0, 900, 480);
+  const bounceAge = Math.max(0, t - 2.1);
+  const bounce = lift * Math.exp(-bounceAge * 2.2)
+    * Math.sin(bounceAge * 11) * 15;
+  const tilt = Math.sin(t * Math.PI / 4) * .015 * lift;
+  send.style.transform = 'scale(' +
+    (1 - .06 * smooth(.1,.25,t) * (1-smooth(.3,.5,t)))
+    + ')';
+  ctx.fillStyle = '#70538125';
+  ctx.beginPath(); ctx.ellipse(450, 413, 178, 11, 0,
+    0, Math.PI * 2); ctx.fill();
+  ctx.save(); ctx.translate(450, 310); ctx.rotate(tilt);
+  ctx.translate(-450, -310 - lift * 5);
+  ctx.shadowColor = '#377b7a55'; ctx.shadowBlur = 18;
+  ctx.shadowOffsetY = 9;
+  ctx.fillStyle = '#138c97';
+  ctx.fillRect(270, 210, 360, 180);
+  ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+  const tip = 210 + 116 * Math.cos(Math.PI * open);
+  const gradient = (top, bottom) => {
+    const fill = ctx.createLinearGradient(0,210,0,390);
+    fill.addColorStop(0, top); fill.addColorStop(1, bottom);
+    return fill;
+  };
+  if (open > .5) {
+    polygon([[270,210],[630,210],[450,tip]],
+      gradient('#90e9df', '#24aebb'));
+  }
+  ctx.save();
+  ctx.translate(450,317-lift*146-bounce);
+  ctx.rotate(Math.sin(t * 2) * .035 * lift);
+  ctx.shadowColor = '#3f7b7b33'; ctx.shadowBlur = 12;
+  heart(0, 0, 1.1, '#fffaf8');
+  ctx.shadowBlur = 0;
+  heart(0, -8, .52, '#f23c85');
+  ctx.restore();
+  polygon([[270,210],[450,315],[270,390]],
+    gradient('#91e9df', '#22b3ba'));
+  polygon([[630,210],[450,315],[630,390]],
+    gradient('#58d4d2', '#1199ac'));
+  polygon([[270,390],[450,280],[630,390]],
+    gradient('#83e2df', '#36bac3'));
+  if (open <= .5) {
+    polygon([[270,210],[630,210],[450,tip]],
+      gradient('#a2f0e4', '#35b8c7'));
+    heart(450, 297, .17, '#e63880');
+  }
+  ctx.strokeStyle = '#ffffff66'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(271,389);
+  ctx.lineTo(450,280); ctx.lineTo(629,389); ctx.stroke();
+  ctx.restore();
+  for (let i = 0; i < 24; i++) {
+    const age = t - 2.5 - (i % 8) * .13;
+    if (age < 0 || age > 3.4) continue;
+    ctx.globalAlpha = Math.min(1, age * 3)
+      * (1 - smooth(2, 3.4, age));
+    const direction = i % 2 ? 1 : -1;
+    const spread = (30 + i * 4) * age;
+    const x = 450 + direction * spread
+      + Math.sin(age * 4 + i) * 24 * age;
+    const y = 190 - (42 + i % 5 * 10) * age
+      + 14 * age * age;
+    ctx.save(); ctx.translate(x, y);
+    ctx.rotate(Math.sin(age + i) * .35);
+    heart(0, 0, .07 + i % 3 * .035, colors[i % 4]);
+    ctx.restore();
+  }
+  ctx.globalAlpha = 1;
+  const glow = lift * (1 - smooth(5,6,t));
+  for (let i = 0; i < 7; i++) {
+    const angle = t * 1.3 + i * Math.PI * 2 / 7;
+    const x = 450 + Math.cos(angle) * 155;
+    const y = 176 + Math.sin(angle) * 75;
+    ctx.globalAlpha = glow * .55;
+    ctx.fillStyle = '#e63880';
+    ctx.beginPath(); ctx.arc(x,y,2.5,0,Math.PI*2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+const sources = {"index.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n  \u003cmeta charset=\"utf-8\">\n  \u003cmeta name=\"viewport\"\n    content=\"width=device-width, initial-scale=1\">\n  \u003ctitle>Send Love\u003c/title>\n  \u003clink rel=\"stylesheet\" href=\"style.css\">\n  \u003cscript src=\"script.js\" defer>\u003c/script>\n\u003c/head>\n\u003cbody>\n  \u003cmain class=\"app\" aria-label=\"Interactive love envelope\">\n    \u003cp class=\"eyebrow\">CODE WITH RISHABH\u003c/p>\n    \u003ch1>ONE CLICK. \u003cspan>A LITTLE LOVE.\u003c/span>\u003c/h1>\n    \u003cdiv class=\"stage\">\n      \u003ccanvas id=\"envelope\" aria-hidden=\"true\">\u003c/canvas>\n    \u003c/div>\n    \u003cbutton id=\"send\">Send Love \u2665\u003c/button>\n    \u003cp id=\"message\" role=\"status\" aria-live=\"polite\">\n      A tiny delivery of happiness.\n    \u003c/p>\n    \u003cp class=\"handle\">@codewithrishabh3596\u003c/p>\n  \u003c/main>\n\u003c/body>\n\u003c/html>\n", "style.css": "* { box-sizing: border-box; }\nbody {\n  margin: 0; min-height: 100vh;\n  display: grid; place-items: center;\n  font-family: Arial, sans-serif; color: #49303f;\n  background: linear-gradient(135deg, #f3e8ff, #ffd9e4);\n}\n.app { width: min(92vw, 640px); text-align: center; }\n.eyebrow, .handle { font-weight: 700; }\nh1 { font-size: clamp(26px, 5vw, 42px); }\nh1 span { color: #ed477c; }\n.stage {\n  width: 100%; aspect-ratio: 1.875;\n  background: #f8eeff; border-radius: 28px;\n  overflow: hidden; box-shadow: 0 16px 40px #cb777b22;\n}\ncanvas { width: 100%; height: 100%; display: block; }\nbutton {\n  margin-top: 16px; padding: 16px 42px;\n  border: 0; border-radius: 30px;\n  background: #e63880; color: white;\n  font-size: 20px; font-weight: 700; cursor: pointer;\n  box-shadow: 0 5px 0 #b72c57;\n}\nbutton:disabled { opacity: .7; cursor: default; }\nbutton:focus-visible { outline: 3px solid #49303f; }\n#message { min-height: 24px; }\n", "script.js": "const canvas = document.querySelector('#envelope');\nconst ctx = canvas.getContext('2d');\nconst send = document.querySelector('#send');\nconst message = document.querySelector('#message');\nconst reduced = matchMedia('(prefers-reduced-motion: reduce)');\nconst colors = ['#ed477c', '#ff9669', '#28bcb5', '#bb80e0'];\nlet playing = false, start = 0, elapsed = 0;\nfunction smooth(a, b, t) {\n  const p = Math.max(0, Math.min(1, (t - a) / (b - a)));\n  return p * p * (3 - 2 * p);\n}\nfunction polygon(points, color) {\n  ctx.beginPath();\n  points.forEach(([x, y], i) => {\n    if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);\n  });\n  ctx.closePath(); ctx.fillStyle = color; ctx.fill();\n}\nfunction heart(x, y, size, color) {\n  ctx.save(); ctx.translate(x, y); ctx.scale(size, size);\n  ctx.beginPath(); ctx.moveTo(0, 65);\n  ctx.bezierCurveTo(-20, 46, -90, 4, -90, -47);\n  ctx.bezierCurveTo(-90, -98, -28, -108, 0, -69);\n  ctx.bezierCurveTo(28, -108, 90, -98, 90, -47);\n  ctx.bezierCurveTo(90, 4, 20, 46, 0, 65);\n  ctx.fillStyle = color; ctx.fill(); ctx.restore();\n}\nfunction draw(t) {\n  t = ((t % 8) + 8) % 8;\n  const open = smooth(.5, 1.5, t)\n    * (1 - smooth(7, 7.8, t));\n  const lift = smooth(1.6, 3, t)\n    * (1 - smooth(6, 7, t));\n  ctx.setTransform(canvas.width / 900, 0, 0,\n    canvas.height / 480, 0, 0);\n  ctx.clearRect(0, 0, 900, 480);\n  const bounceAge = Math.max(0, t - 2.1);\n  const bounce = lift * Math.exp(-bounceAge * 2.2)\n    * Math.sin(bounceAge * 11) * 15;\n  const tilt = Math.sin(t * Math.PI / 4) * .015 * lift;\n  send.style.transform = 'scale(' +\n    (1 - .06 * smooth(.1,.25,t) * (1-smooth(.3,.5,t)))\n    + ')';\n  ctx.fillStyle = '#70538125';\n  ctx.beginPath(); ctx.ellipse(450, 413, 178, 11, 0,\n    0, Math.PI * 2); ctx.fill();\n  ctx.save(); ctx.translate(450, 310); ctx.rotate(tilt);\n  ctx.translate(-450, -310 - lift * 5);\n  ctx.shadowColor = '#377b7a55'; ctx.shadowBlur = 18;\n  ctx.shadowOffsetY = 9;\n  ctx.fillStyle = '#138c97';\n  ctx.fillRect(270, 210, 360, 180);\n  ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;\n  const tip = 210 + 116 * Math.cos(Math.PI * open);\n  const gradient = (top, bottom) => {\n    const fill = ctx.createLinearGradient(0,210,0,390);\n    fill.addColorStop(0, top); fill.addColorStop(1, bottom);\n    return fill;\n  };\n  if (open > .5) {\n    polygon([[270,210],[630,210],[450,tip]],\n      gradient('#90e9df', '#24aebb'));\n  }\n  ctx.save();\n  ctx.translate(450,317-lift*146-bounce);\n  ctx.rotate(Math.sin(t * 2) * .035 * lift);\n  ctx.shadowColor = '#3f7b7b33'; ctx.shadowBlur = 12;\n  heart(0, 0, 1.1, '#fffaf8');\n  ctx.shadowBlur = 0;\n  heart(0, -8, .52, '#f23c85');\n  ctx.restore();\n  polygon([[270,210],[450,315],[270,390]],\n    gradient('#91e9df', '#22b3ba'));\n  polygon([[630,210],[450,315],[630,390]],\n    gradient('#58d4d2', '#1199ac'));\n  polygon([[270,390],[450,280],[630,390]],\n    gradient('#83e2df', '#36bac3'));\n  if (open \u003c= .5) {\n    polygon([[270,210],[630,210],[450,tip]],\n      gradient('#a2f0e4', '#35b8c7'));\n    heart(450, 297, .17, '#e63880');\n  }\n  ctx.strokeStyle = '#ffffff66'; ctx.lineWidth = 1.5;\n  ctx.beginPath(); ctx.moveTo(271,389);\n  ctx.lineTo(450,280); ctx.lineTo(629,389); ctx.stroke();\n  ctx.restore();\n  for (let i = 0; i \u003c 24; i++) {\n    const age = t - 2.5 - (i % 8) * .13;\n    if (age \u003c 0 || age > 3.4) continue;\n    ctx.globalAlpha = Math.min(1, age * 3)\n      * (1 - smooth(2, 3.4, age));\n    const direction = i % 2 ? 1 : -1;\n    const spread = (30 + i * 4) * age;\n    const x = 450 + direction * spread\n      + Math.sin(age * 4 + i) * 24 * age;\n    const y = 190 - (42 + i % 5 * 10) * age\n      + 14 * age * age;\n    ctx.save(); ctx.translate(x, y);\n    ctx.rotate(Math.sin(age + i) * .35);\n    heart(0, 0, .07 + i % 3 * .035, colors[i % 4]);\n    ctx.restore();\n  }\n  ctx.globalAlpha = 1;\n  const glow = lift * (1 - smooth(5,6,t));\n  for (let i = 0; i \u003c 7; i++) {\n    const angle = t * 1.3 + i * Math.PI * 2 / 7;\n    const x = 450 + Math.cos(angle) * 155;\n    const y = 176 + Math.sin(angle) * 75;\n    ctx.globalAlpha = glow * .55;\n    ctx.fillStyle = '#e63880';\n    ctx.beginPath(); ctx.arc(x,y,2.5,0,Math.PI*2);\n    ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n}\nfunction resize() {\n  const box = canvas.getBoundingClientRect();\n  const dpr = Math.min(devicePixelRatio || 1, 2);\n  canvas.width = Math.round(box.width * dpr);\n  canvas.height = Math.round(box.height * dpr);\n  draw(elapsed);\n}\nfunction tick(now) {\n  elapsed = (now - start) / 1000;\n  if (elapsed >= 8) {\n    playing = false; elapsed = 0; draw(0);\n    send.disabled = false;\n    message.textContent = 'Ready to send a little more love.';\n    return;\n  }\n  draw(elapsed); requestAnimationFrame(tick);\n}\nsend.addEventListener('click', () => {\n  if (playing) return;\n  message.textContent = 'A little love, just for you.';\n  if (reduced.matches) { elapsed = 4; draw(4); return; }\n  playing = true; send.disabled = true;\n  start = performance.now(); requestAnimationFrame(tick);\n});\naddEventListener('resize', resize);\nresize();\n"};
+const viewport = document.querySelector('.codeviewport');
+const code = document.querySelector('#sourcecode');
+let activeFile = '';
+const esc = value => value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+function highlight(line) {
+  const regex = /(\/\/.*$|"[^"\n]*"|'[^'\n]*'|\b(?:const|let|function|return|for|if|else|new)\b|\b\d+(?:\.\d+)?\b)/g;
+  let result='', last=0;
+  for(const match of line.matchAll(regex)) {
+    result += esc(line.slice(last,match.index));
+    const value=match[0], cls=value.startsWith('//')?'comment':/^["']/.test(value)?'str':/^\d/.test(value)?'number':'kw';
+    result += '<span class="'+cls+'">'+esc(value)+'</span>';last=match.index+value.length;
+  }
+  return result+esc(line.slice(last));
+}
+function selectFile(name) {
+  if(activeFile===name) return;
+  activeFile=name;
+  code.innerHTML=sources[name].trimEnd().split('\n').map((line,i)=>'<div class="row"><span class="num">'+(i+1)+'</span><span class="text">'+highlight(line)+'</span></div>').join('');
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.file===name));
+  document.querySelector('#breadcrumb').textContent='send-love › '+name;
+  document.querySelector('#language').textContent=({'index.html':'HTML','style.css':'CSS','script.js':'JavaScript'}[name])+'   UTF-8   Spaces: 2';
+  viewport.scrollTop=0;
+}
+
+window.seekVideo = function(t) {
+  draw(t);
+  const cycle=((t%64)+64)%64;
+  const name=cycle<8?'index.html':cycle<20?'style.css':'script.js';
+  const offset=cycle<8?0:cycle<20?8:20;
+  const duration=cycle<8?8:cycle<20?12:44;
+  selectFile(name);
+  const progress=Math.max(0,Math.min(1,
+    (cycle-offset-1.5)/(duration-3)));
+  viewport.scrollTop=progress*(viewport.scrollHeight-viewport.clientHeight);
+};
+function resize() {
+  const box=canvas.getBoundingClientRect();
+  canvas.width=Math.round(box.width);
+  canvas.height=Math.round(box.height);
+  draw(elapsed);
+}
+function tick(now) {
+  elapsed=(now-start)/1000;
+  if(elapsed>=8){playing=false;elapsed=0;draw(0);send.disabled=false;return;}
+  draw(elapsed);requestAnimationFrame(tick);
+}
+send.addEventListener('click',()=>{
+  if(playing)return;
+  message.textContent='A little love, just for you.';
+  if(reduced.matches){draw(4);return;}
+  playing=true;send.disabled=true;
+  start=performance.now();requestAnimationFrame(tick);
+});
+document.querySelectorAll('.tab').forEach(el=>
+  el.addEventListener('click',()=>selectFile(el.dataset.file)));
+if(location.search.includes('capture')){
+  document.body.classList.add('capture');
+  document.querySelector('.controls').hidden=true;
+}
+document.querySelector('#replay').addEventListener('click',()=>send.click());
+resize();selectFile('index.html');
+addEventListener('resize',resize);
+</script></body></html>

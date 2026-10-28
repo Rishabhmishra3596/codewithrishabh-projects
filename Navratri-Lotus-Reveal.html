@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Navratri Lotus Reveal</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #efe5d7; }
+.reel { width: 1080px; height: 1920px; position: relative;
+  overflow: hidden; background: #fff8ed; color: #801b30;
+  font-family: Georgia, serif; transform-origin: top left; }
+header { position: absolute; top: 32px; width: 100%;
+  text-align: center; font: 24px system-ui; letter-spacing: 3px; }
+.stage { position: absolute; left: 60px; top: 92px;
+  width: 960px; height: 960px; border: 2px solid #d4ac63;
+  border-radius: 28px; overflow: hidden;
+  background: url('assets/temple.png') center / cover; }
+.shrine { position: absolute; left: 270px; top: 110px;
+  width: 420px; height: 630px; object-fit: contain;
+  opacity: 0; transform: translateY(75px); }
+.petal { position: absolute; transform-origin: 50% 100%;
+  background: url('assets/petal.png') center / 100% 100%; }
+.aura { position: absolute; left: 240px; top: 120px;
+  width: 480px; height: 640px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(ellipse, #fff0a177, #ffc25133 45%, transparent 72%); }
+.spark { position: absolute; width: 5px; height: 5px; border-radius: 50%;
+  background: #fff4bf; box-shadow: 0 0 9px #ffbf41; }
+.floating-petal { position: absolute; width: 12px; height: 24px;
+  border-radius: 65% 30%; background: #a41136; }
+.greeting { position: absolute; top: 1065px; width: 100%;
+  opacity: 0; text-align: center; }
+h1 { margin: 0 0 8px; font-size: 57px; }
+.greeting p { margin: 0; font: 22px system-ui; }
+button { position: absolute; top: 1192px; left: 290px;
+  width: 500px; height: 78px; border: 2px solid #d4ac63;
+  border-radius: 39px; color: #fff4dc; background: #891c34;
+  font: 29px Georgia; cursor: pointer;
+  box-shadow: 0 8px 22px #73152730; }
+button:hover { background: #a42a44; box-shadow: 0 0 24px #d4ac6388; }
+button:focus-visible { outline: 4px solid #d4ac63; outline-offset: 5px; }
+.diya { position: absolute; top: 90%; width: 72px; height: 24px;
+  border-radius: 12% 12% 60% 60%; background: linear-gradient(#d89848,#90451e);
+  transform: translateX(-50%); opacity: 0; border: 2px solid #f4c576; }
+.diya i { position: absolute; left: 26px; top: -44px; width: 16px; height: 44px;
+  border-radius: 70% 30% 55% 45%; background: linear-gradient(#ffad17,#fffac1);
+  box-shadow: 0 0 26px 8px #ffc14c77; }
+.code { position: absolute; top: 1310px; left: 60px; width: 960px; }
+article { height: 171px; margin-bottom: 12px; border-radius: 11px;
+  background: #1e1e1e; overflow: hidden; }
+h2 { height: 31px; margin: 0; padding: 6px 14px; background: #303030;
+  color: #ddd; font: 17px monospace; }
+h2 small { float: right; color: #aaa; }
+pre { height: 140px; margin: 0; padding: 10px 14px; white-space: pre-wrap;
+  color: #d7e7f5; font: 19px/21px monospace; overflow: auto; scrollbar-width: none; }
+footer { position: absolute; top: 1873px; width: 100%; text-align: center;
+  font: 22px system-ui; color: #805d3b; }
+.cursor { position: absolute; font-size: 46px; color: white;
+  text-shadow: 2px 2px #222, -2px -2px #222; pointer-events: none; display: none; }
+
+</style>
+</head>
+<body>
+<!-- Original artwork was not attached: assets/temple.png, assets/petal.png, assets/shrine.png. -->
+<main class="reel">
+  <header>NAVRATRI · LET DEVOTION BLOOM</header>
+  <section class="stage" aria-label="Animated Navratri shrine reveal">
+    <div class="aura"></div>
+    <img class="shrine" src="assets/shrine.png" alt="Maa Durga within a golden arch">
+    <div class="lotus" aria-hidden="true"></div>
+    <div class="particles" aria-hidden="true"></div>
+    <div class="diya" style="left:17%"><i></i></div>
+    <div class="diya" style="left:83%"><i></i></div>
+  </section>
+  <section class="greeting" aria-live="polite">
+    <h1>Happy Navratri</h1>
+    <p>May Maa Durga bless you with strength, peace & happiness.</p>
+  </section>
+  <button id="bloom" type="button">Let Devotion Bloom</button>
+  <section class="code" aria-label="HTML CSS and JavaScript source previews">
+    <article><h2>● ● ● &nbsp; HTML <small>index.html</small></h2><pre id="html"></pre></article>
+    <article><h2>● ● ● &nbsp; CSS <small>style.css</small></h2><pre id="css"></pre></article>
+    <article><h2>● ● ● &nbsp; JAVASCRIPT <small>script.js</small></h2><pre id="js"></pre></article>
+  </section>
+  <footer>@codewithrishabh3596 · HTML + CSS + JS</footer>
+  <div class="cursor" aria-hidden="true">➤</div>
+</main>
+<script>
+const stage = document.querySelector('.stage');
+const lotus = document.querySelector('.lotus');
+const shrine = document.querySelector('.shrine');
+const aura = document.querySelector('.aura');
+const greeting = document.querySelector('.greeting');
+const button = document.querySelector('#bloom');
+const cursor = document.querySelector('.cursor');
+const lamps = [...document.querySelectorAll('.diya')];
+const petals = [];
+const clamp = x => Math.max(0, Math.min(1, x));
+const ease = x => { const p = clamp(x); return p*p*(3-2*p); };
+// Each textured petal pivots independently from its base.
+for (let i = -6; i <= 6; i++) {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  lotus.append(petal);
+  petals.push({element: petal, index: i});
+}
+const particles = [];
+for (let i = 0; i < 58; i++) {
+  const dot = document.createElement('span');
+  dot.className = i < 42 ? 'spark' : 'floating-petal';
+  document.querySelector('.particles').append(dot);
+  particles.push(dot);
+}
+function draw(seconds, automatic = false) {
+  const t = automatic ? seconds % 9 : seconds;
+  petals.forEach(({element, index}) => {
+    const distance = Math.abs(index);
+    const p = ease((t - 2.4 - (6-distance)*.055) / 1.6);
+    const angle = index*.15 + (index*13-index*.15)*p;
+    const closedHeight = 510-distance*15;
+    const height = closedHeight + (250+distance*20-closedHeight)*p;
+    const width = 180 + 30*p;
+    element.style.left = `${480-width/2+index*(.25+1.75*p)}px`;
+    element.style.top = `${805-height}px`;
+    element.style.width = `${width}px`;
+    element.style.height = `${height}px`;
+    element.style.transform = `rotate(${angle}deg)`;
+    element.style.zIndex = String(20-distance);
+  });
+  const reveal = ease((t-2.9)/1.3);
+  shrine.style.opacity = reveal;
+  shrine.style.transform = `translateY(${75*(1-reveal)}px)`;
+  aura.style.opacity = reveal;
+  greeting.style.opacity = ease((t-4.4)/.8);
+  greeting.style.transform = `translateY(${18*(1-ease((t-4.4)/.8))}px)`;
+  button.textContent = t>=4.4 ? 'Happy Navratri' : 'Let Devotion Bloom';
+  lamps.forEach((lamp,i) => {
+    lamp.style.opacity = ease((t-4.1-i*.25)/.4);
+    lamp.querySelector('i').style.height = `${44+3*Math.sin(t*8+i)}px`;
+  });
+  particles.forEach((dot,i) => {
+    const v = ((t*.13+i*.618)%1);
+    const x = i<42 ? 480+Math.sin(i*2.4)*370 : (i%2?900:45)+Math.sin(t+i)*18;
+    dot.style.left = `${x}px`;
+    dot.style.top = `${900-v*840}px`;
+    dot.style.opacity = (i<42?.3:.7)*Math.sin(v*Math.PI)*(t<2.4?.25:reveal);
+    dot.style.transform = `rotate(${t*28+i*17}deg)`;
+  });
+  cursor.style.display = automatic && t>.25 && t<3.15 ? 'block' : 'none';
+  const travel = ease((t-.7)/1.45);
+  cursor.style.left = `${900+(572-900)*travel}px`;
+  cursor.style.top = `${882+(1230-882)*travel}px`;
+  const shrink = t>=2.35 && t<2.5 ? .96 : 1;
+  button.style.transform = `scale(${shrink})`;
+  document.querySelectorAll('pre').forEach(pre => {
+    pre.scrollTop = Math.max(0, Math.floor((t-4.5)/.9))*21;
+  });
+}
+function fit() {
+  const scale = innerWidth/1080;
+  document.querySelector('.reel').style.transform = `scale(${scale})`;
+  document.body.style.height = `${1920*scale}px`;
+}
+addEventListener('resize',fit); fit();
+let start = null;
+let active = false;
+const automatic = new URLSearchParams(location.search).has('demo');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+button.addEventListener('click', () => {
+  if (active) { active=false; start=null; draw(0); return; }
+  active=true;
+  start=performance.now()-2400;
+  if (reduced) { draw(6); start=null; }
+});
+function tick(now) {
+  if (automatic) { if (start===null) start=now; draw((now-start)/1000,true); }
+  else if (active && start!==null) draw((now-start)/1000);
+  requestAnimationFrame(tick);
+}
+draw(0); requestAnimationFrame(tick);
+window.seekLotus = seconds => draw(seconds,true);
+
+</script>
+<script>
+const source = {"html": "  <section class=\"stage\" aria-label=\"Animated Navratri shrine reveal\">\n    <div class=\"aura\"></div>\n    <img class=\"shrine\" src=\"assets/shrine.png\" alt=\"Maa Durga within a golden arch\">\n    <div class=\"lotus\" aria-hidden=\"true\"></div>\n    <div class=\"particles\" aria-hidden=\"true\"></div>\n    <div class=\"diya\" style=\"left:17%\"><i></i></div>\n    <div class=\"diya\" style=\"left:83%\"><i></i></div>\n  </section>\n  <section class=\"greeting\" aria-live=\"polite\">", "css": ".shrine { position: absolute; left: 270px; top: 110px;\n  width: 420px; height: 630px; object-fit: contain;\n  opacity: 0; transform: translateY(75px); }\n.petal { position: absolute; transform-origin: 50% 100%;\n  background: url('assets/petal.png') center / 100% 100%; }\n.aura { position: absolute; left: 240px; top: 120px;\n  width: 480px; height: 640px; border-radius: 50%; opacity: 0;\n  background: radial-gradient(ellipse, #fff0a177, #ffc25133 45%, transparent 72%); }\n.spark { position: absolute; width: 5px; height: 5px; border-radius: 50%;\n  background: #fff4bf; box-shadow: 0 0 9px #ffbf41; }\n.floating-petal { position: absolute; width: 12px; height: 24px;\n  border-radius: 65% 30%; background: #a41136; }", "js": "  petals.forEach(({element, index}) => {\n    const distance = Math.abs(index);\n    const p = ease((t - 2.4 - (6-distance)*.055) / 1.6);\n    const angle = index*.15 + (index*13-index*.15)*p;\n    const closedHeight = 510-distance*15;\n    const height = closedHeight + (250+distance*20-closedHeight)*p;\n    const width = 180 + 30*p;\n    element.style.left = `${480-width/2+index*(.25+1.75*p)}px`;\n    element.style.top = `${805-height}px`;\n    element.style.width = `${width}px`;\n    element.style.height = `${height}px`;\n    element.style.transform = `rotate(${angle}deg)`;\n    element.style.zIndex = String(20-distance);\n  });"};
+Object.entries(source).forEach(([id,text]) => document.getElementById(id).textContent=text);
+
+</script>
+</body>
+</html>

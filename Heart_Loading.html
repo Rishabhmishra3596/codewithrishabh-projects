@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Heart Loading • Code With Rishabh</title><style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#eee5ff;color:#35204e;font-family:Arial,Helvetica,sans-serif}.reel{position:relative;width:min(100vw,540px);aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:linear-gradient(145deg,#f5eaff,#e1d9ff 45%,#ffd2e2)}body.capture .reel{width:100vw;height:100vh;aspect-ratio:auto}.orb{position:absolute;border-radius:50%;filter:blur(4cqw);opacity:.5}.orb.a{background:#fff3a6;width:70cqw;height:70cqw;top:-30cqw;right:-25cqw}.orb.b{background:#c7faff;width:65cqw;height:65cqw;left:-33cqw;top:70cqw}.grid{position:absolute;inset:0;background-image:radial-gradient(#70578520 1px,transparent 1px);background-size:18px 18px}.top{position:absolute;top:9cqw;left:7cqw;right:7cqw;display:flex;align-items:center;justify-content:space-between;font-size:2.2cqw;letter-spacing:.13cqw;font-weight:bold}.badge{padding:1.5cqw 2.4cqw;border-radius:6cqw;border:1px solid #35204e44;background:#fff7}.intro{position:absolute;top:20cqw;left:7cqw;right:7cqw}h1{font-size:9cqw;line-height:1.01;letter-spacing:-.4cqw;margin:0;font-weight:900}h1 span{color:#db247e}.intro p{font-size:3cqw;margin:3cqw 0 0;line-height:1.5}.stage{position:absolute;left:7cqw;top:49cqw;width:86cqw;height:68cqw;border-radius:5cqw;background:#190c31;overflow:hidden;box-shadow:0 3cqw 7cqw #86588b33;border:1px solid #ffffffb0}.stage::before{content:'';position:absolute;width:48cqw;height:48cqw;border:1px solid #77466550;border-radius:50%;top:10cqw;left:19cqw;box-shadow:0 0 0 8cqw #9754b009,0 0 0 16cqw #9754b005}.stage-top{position:absolute;top:3.2cqw;left:3.5cqw;right:3.5cqw;display:flex;justify-content:space-between;color:#d9b7e7;font-size:2.1cqw;letter-spacing:.2cqw;font-weight:bold}.live{color:#ffa4d3}.stage-footer{position:absolute;bottom:3.2cqw;left:0;right:0;text-align:center;font-size:2.5cqw;color:#dccae7;letter-spacing:.1cqw}canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}.stage-top,.stage-footer{z-index:2}.editor{position:absolute;top:123cqw;left:7cqw;right:7cqw;border-radius:3cqw;background:#35204e;overflow:hidden;box-shadow:0 2cqw 4cqw #78548522;color:#fff}.bar{padding:2.3cqw 3cqw;background:#28143f;font-size:2.5cqw;display:flex;align-items:center;gap:1cqw}.dot{width:1.3cqw;height:1.3cqw;border-radius:50%;background:#ff85b4}.dot:nth-child(2){background:#ffe996}.dot:nth-child(3){background:#76e8e7}.filename{margin-left:2cqw;color:#dbc7e4}pre{margin:0;padding:3cqw;font:2.3cqw/1.45 Consolas,'DejaVu Sans Mono',monospace;white-space:pre-wrap}.pink{color:#ff9ecd}.cyan{color:#7ee9f1}.cream{color:#ffe596}.cta{position:absolute;top:154cqw;left:7cqw;right:7cqw;text-align:center;font-size:3.9cqw;font-weight:bold;line-height:1.4}.cta small{display:block;margin-top:1.1cqw;font-weight:normal;font-size:2.8cqw}.footer{position:absolute;bottom:7.5cqw;left:0;width:100%;text-align:center;font-size:2.7cqw;font-weight:bold}.controls{text-align:center;margin:16px;font-size:14px}.controls button{border:0;padding:10px 18px;background:#35204e;color:white;border-radius:20px;cursor:pointer}.capture .controls{display:none}
+.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}.intro{top:17cqw}h1{font-size:6.5cqw;line-height:1.08}h1 br{display:none}.intro p{font-size:2.7cqw;margin:2cqw 0 0}.stage{left:5cqw;top:32cqw;width:90cqw;height:48cqw;border-radius:3cqw}.stage::before{width:34cqw;height:34cqw;left:28cqw;top:7cqw}.stage-top{top:2cqw;font-size:1.8cqw}.stage-footer{bottom:1.8cqw;font-size:2cqw}.editor{top:85cqw;left:5cqw;right:5cqw;height:70cqw;border-radius:2cqw;background:#1e1e1e}.bar{background:#323233;height:5cqw;padding:1cqw 2cqw;font-size:1.9cqw}.filename{color:#ccc}.tabs{display:flex;height:5.4cqw;background:#252526;padding-left:4cqw}.tab{font-family:inherit;font-size:2.1cqw;color:#9d9d9d;background:#2d2d2d;border:0;border-right:1px solid #181818;padding:0 2.4cqw;cursor:pointer}.tab.active{background:#1e1e1e;color:#fff;border-top:2px solid #c47cf1}.tab .html{color:#e98c56}.tab .css{color:#5fa2e4}.tab .js{color:#e8d562}.breadcrumbs{height:3.2cqw;background:#1e1e1e;color:#bdbdbd;font-size:1.65cqw;padding:.7cqw 2cqw 0 6cqw}.codeviewport{position:absolute;top:13.6cqw;bottom:3cqw;left:4cqw;right:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#555 #1e1e1e}.codecontent{font:2.15cqw/2.95cqw Consolas,'DejaVu Sans Mono',monospace;padding:1cqw 1.5cqw 2cqw 0;white-space:pre}.row{display:flex;min-height:2.95cqw}.num{display:inline-block;flex:0 0 5cqw;text-align:right;padding-right:1.7cqw;color:#858585;user-select:none}.text{color:#d4d4d4}.activity{position:absolute;top:5cqw;bottom:3cqw;left:0;width:4cqw;background:#333;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:3cqw;padding-top:2cqw;font-size:2.4cqw}.status{position:absolute;bottom:0;left:0;right:0;height:3cqw;background:#7b3eaa;color:#fff;font-size:1.65cqw;display:flex;justify-content:space-between;align-items:center;padding:0 1.8cqw}.cta{top:159cqw;font-size:3.4cqw}.cta small{font-size:2.6cqw}.footer{bottom:5cqw}.kw{color:#c586c0}.str{color:#ce9178}.number{color:#b5cea8}.comment{color:#6a9955}.punct{color:#569cd6}</style></head><body><main class="reel"><div class="orb a"></div><div class="orb b"></div><div class="grid"></div><div class="top"><span>CODE WITH RISHABH</span><span class="badge">HTML • CSS • JS</span></div><div class="intro"><h1>LOADING...<br><span>WITH LOVE.</span></h1><p>Little particles. One glowing heartbeat.</p></div><section class="stage" aria-label="Glowing particles gather into a heart and dissolve"><div class="stage-top"><span>PARTICLE HEART</span><span class="live">● SEAMLESS LOOP</span></div><canvas id="heart" aria-hidden="true"></canvas><div class="stage-footer">GATHER &nbsp; / &nbsp; GLOW &nbsp; / &nbsp; LET GO</div></section><section class="editor" aria-label="VS Code-style source viewer"><div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="filename">Heart Loader — Visual Studio Code</span></div><div class="tabs"><button class="tab active" data-file="index.html"><span class="html">&lt;&gt;</span> index.html</button><button class="tab" data-file="style.css"><span class="css">#</span> style.css</button><button class="tab" data-file="script.js"><span class="js">JS</span> script.js</button></div><div class="breadcrumbs" id="breadcrumb">heart-loader › index.html</div><div class="activity"><span>▣</span><span>⌕</span><span>⑂</span><span>▷</span></div><div class="codeviewport"><div class="codecontent" id="sourcecode"></div></div><div class="status"><span>main* &nbsp; ✓ 0 errors</span><span id="language">HTML &nbsp; UTF-8 &nbsp; Spaces: 2</span></div></section><div class="cta">Worth the wait. ♥<small>Follow + comment “HEART” for the code</small></div><div class="footer">@codewithrishabh3596</div></main><div class="controls"><button id="pause">Pause animation</button><p>Canvas particle animation • Single file • No libraries</p></div><script>
+const canvas = document.querySelector('#heart');
+const ctx = canvas.getContext('2d');
+const palette = ['#ff489e', '#ff86ce', '#f9d2ff', '#a5e9ff'];
+const TAU = Math.PI * 2;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+let paused = false, elapsed = 0, previous = 0;
+function smooth(a, b, value) {
+  const p = Math.max(0, Math.min(1, (value - a) / (b - a)));
+  return p * p * (3 - 2 * p);
+}
+function point(i, t, w, h) {
+  const a = i * TAU / (i < 160 ? 160 : 60);
+  const inner = i >= 160 ? .25 + (i * 7 % 60) / 100 : 1;
+  const x = 16 * Math.sin(a) ** 3;
+  const y = 13 * Math.cos(a) - 5 * Math.cos(2 * a)
+    - 2 * Math.cos(3 * a) - Math.cos(4 * a);
+  const g = smooth(.6, 3.6, t) * (1 - smooth(7.6, 10.8, t));
+  const phase = TAU * t / 12;
+  const pulse = 1 + .026 * Math.sin(phase * 8) * g;
+  const scale = Math.min(w * .019, h * .024);
+  const sx = ((i * 73 % 997) / 997 - .5) * w * .92
+    + Math.sin(phase + i) * w * .035;
+  const sy = ((i * 137 % 991) / 991 - .5) * h * .66
+    + Math.cos(phase + i * .7) * h * .035;
+  return {
+    x: w / 2 + sx * (1 - g) + x * scale * inner * pulse * g,
+    y: h * .46 + sy * (1 - g) - y * scale * inner * pulse * g,
+    r: w * (.0018 + (i * 17 % 7) * .00035) * (1 + g * .3),
+    alpha: (.16 + .84 * g)
+      * (.65 + .35 * Math.sin(phase * 2 + i) ** 2)
+  };
+}
+function draw(t) {
+  t = ((t % 12) + 12) % 12;
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 220; i++) {
+    const p = point(i, t, w, h);
+    ctx.globalAlpha = p.alpha;
+    ctx.fillStyle = ctx.shadowColor = palette[i % 4];
+    ctx.shadowBlur = p.r * 5;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, TAU); ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#fff1fb';
+    ctx.globalAlpha = p.alpha * .7;
+    ctx.beginPath();
+  ctx.arc(p.x, p.y, p.r * .4, 0, TAU); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = 'source-over';
+}
+function resize() {
+  const box = canvas.getBoundingClientRect();
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.round(box.width * dpr);
+  canvas.height = Math.round(box.height * dpr);
+  draw(reduced.matches ? 5 : elapsed);
+}
+function tick(now) {
+  if (previous && !paused) elapsed += (now - previous) / 1000;
+  previous = now;
+  if (!paused) draw(elapsed);
+  requestAnimationFrame(tick);
+}
+
+const sources = {"index.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n  \u003cmeta charset=\"utf-8\">\n  \u003cmeta name=\"viewport\"\n    content=\"width=device-width, initial-scale=1\">\n  \u003ctitle>Loading With Love\u003c/title>\n  \u003clink rel=\"stylesheet\" href=\"style.css\">\n  \u003cscript src=\"script.js\" defer>\u003c/script>\n\u003c/head>\n\u003cbody>\n  \u003cmain class=\"loader\" aria-label=\"Heart loading animation\">\n    \u003cp class=\"eyebrow\">CODE WITH RISHABH\u003c/p>\n    \u003ch1>LOADING... \u003cspan>WITH LOVE.\u003c/span>\u003c/h1>\n    \u003cdiv class=\"stage\">\n      \u003ccanvas id=\"heart\" aria-hidden=\"true\">\u003c/canvas>\n      \u003cp class=\"caption\">GATHER / GLOW / LET GO\u003c/p>\n    \u003c/div>\n    \u003cbutton id=\"pause\">Pause animation\u003c/button>\n    \u003cp class=\"handle\">@codewithrishabh3596\u003c/p>\n  \u003c/main>\n\u003c/body>\n\u003c/html>\n", "style.css": "* { box-sizing: border-box; }\nbody {\n  margin: 0;\n  min-height: 100vh;\n  display: grid;\n  place-items: center;\n  font-family: Arial, sans-serif;\n  color: #35204e;\n  background: linear-gradient(135deg, #e1d9ff, #ffd2e2);\n}\n.loader { width: min(92vw, 600px); text-align: center; }\n.eyebrow, .handle { font-weight: 700; letter-spacing: .1em; }\nh1 { font-size: clamp(28px, 6vw, 48px); }\nh1 span { color: #db247e; }\n.stage {\n  position: relative;\n  width: 100%;\n  aspect-ratio: 1.35;\n  border-radius: 28px;\n  overflow: hidden;\n  background: #190c31;\n  box-shadow: 0 20px 50px #86588b33;\n}\ncanvas { width: 100%; height: 100%; display: block; }\n.caption {\n  position: absolute; bottom: 12px; left: 0; right: 0;\n  color: #dccae7; font-size: 12px; letter-spacing: .15em;\n  pointer-events: none;\n}\nbutton {\n  margin-top: 20px; padding: 12px 22px; border: 0;\n  border-radius: 24px; background: #35204e; color: white;\n  cursor: pointer; font-size: 14px;\n}\nbutton:focus-visible { outline: 3px solid #db247e; }\n", "script.js": "const canvas = document.querySelector('#heart');\nconst ctx = canvas.getContext('2d');\nconst palette = ['#ff489e', '#ff86ce', '#f9d2ff', '#a5e9ff'];\nconst TAU = Math.PI * 2;\nconst reduced = matchMedia('(prefers-reduced-motion: reduce)');\nlet paused = reduced.matches, elapsed = 0, previous = 0;\nfunction smooth(a, b, value) {\n  const p = Math.max(0, Math.min(1, (value - a) / (b - a)));\n  return p * p * (3 - 2 * p);\n}\nfunction point(i, t, w, h) {\n  const a = i * TAU / (i \u003c 160 ? 160 : 60);\n  const inner = i >= 160 ? .25 + (i * 7 % 60) / 100 : 1;\n  const x = 16 * Math.sin(a) ** 3;\n  const y = 13 * Math.cos(a) - 5 * Math.cos(2 * a)\n    - 2 * Math.cos(3 * a) - Math.cos(4 * a);\n  const g = smooth(.6, 3.6, t) * (1 - smooth(7.6, 10.8, t));\n  const phase = TAU * t / 12;\n  const pulse = 1 + .026 * Math.sin(phase * 8) * g;\n  const scale = Math.min(w * .019, h * .024);\n  const sx = ((i * 73 % 997) / 997 - .5) * w * .92\n    + Math.sin(phase + i) * w * .035;\n  const sy = ((i * 137 % 991) / 991 - .5) * h * .66\n    + Math.cos(phase + i * .7) * h * .035;\n  return {\n    x: w / 2 + sx * (1 - g) + x * scale * inner * pulse * g,\n    y: h * .46 + sy * (1 - g) - y * scale * inner * pulse * g,\n    r: w * (.0018 + (i * 17 % 7) * .00035) * (1 + g * .3),\n    alpha: (.16 + .84 * g)\n      * (.65 + .35 * Math.sin(phase * 2 + i) ** 2)\n  };\n}\nfunction draw(t) {\n  t = ((t % 12) + 12) % 12;\n  const w = canvas.width, h = canvas.height;\n  ctx.clearRect(0, 0, w, h);\n  ctx.globalCompositeOperation = 'lighter';\n  for (let i = 0; i \u003c 220; i++) {\n    const p = point(i, t, w, h);\n    ctx.globalAlpha = p.alpha;\n    ctx.fillStyle = ctx.shadowColor = palette[i % 4];\n    ctx.shadowBlur = p.r * 5;\n    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, TAU); ctx.fill();\n    ctx.shadowBlur = 0;\n    ctx.fillStyle = '#fff1fb';\n    ctx.globalAlpha = p.alpha * .7;\n    ctx.beginPath();\n  ctx.arc(p.x, p.y, p.r * .4, 0, TAU); ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n  ctx.globalCompositeOperation = 'source-over';\n}\nfunction resize() {\n  const box = canvas.getBoundingClientRect();\n  const dpr = Math.min(devicePixelRatio || 1, 2);\n  canvas.width = Math.round(box.width * dpr);\n  canvas.height = Math.round(box.height * dpr);\n  draw(reduced.matches ? 5 : elapsed);\n}\nfunction tick(now) {\n  if (previous && !paused) elapsed += (now - previous) / 1000;\n  previous = now;\n  if (!paused) draw(elapsed);\n  requestAnimationFrame(tick);\n}\nconst pauseButton = document.querySelector('#pause');\npauseButton.textContent = paused\n  ? 'Resume animation' : 'Pause animation';\npauseButton.addEventListener('click', () => {\n  paused = !paused;\n  pauseButton.textContent = paused\n  ? 'Resume animation' : 'Pause animation';\n});\naddEventListener('resize', resize);\nresize(); requestAnimationFrame(tick);\n"};
+const viewport = document.querySelector('.codeviewport');
+const code = document.querySelector('#sourcecode');
+let activeFile = '';
+const esc = value => value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+function highlight(line) {
+  const regex = /(\/\/.*$|"[^"\n]*"|'[^'\n]*'|\b(?:const|let|function|return|for|if|else|new)\b|\b\d+(?:\.\d+)?\b)/g;
+  let result='', last=0;
+  for(const match of line.matchAll(regex)) {
+    result += esc(line.slice(last,match.index));
+    const value=match[0], cls=value.startsWith('//')?'comment':/^["']/.test(value)?'str':/^\d/.test(value)?'number':'kw';
+    result += '<span class="'+cls+'">'+esc(value)+'</span>';last=match.index+value.length;
+  }
+  return result+esc(line.slice(last));
+}
+function selectFile(name) {
+  if(activeFile===name) return;
+  activeFile=name;
+  code.innerHTML=sources[name].trimEnd().split('\n').map((line,i)=>'<div class="row"><span class="num">'+(i+1)+'</span><span class="text">'+highlight(line)+'</span></div>').join('');
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.file===name));
+  document.querySelector('#breadcrumb').textContent='heart-loader › '+name;
+  document.querySelector('#language').textContent=({'index.html':'HTML','style.css':'CSS','script.js':'JavaScript'}[name])+'   UTF-8   Spaces: 2';
+  viewport.scrollTop=0;
+}
+window.seekVideo = function(t) {
+  draw(t);
+  const cycle=((t%48)+48)%48;
+  const name=cycle<8?'index.html':cycle<20?'style.css':'script.js';
+  const offset=cycle<8?0:cycle<20?8:20, duration=cycle<8?8:cycle<20?12:28;
+  selectFile(name);
+  const progress=Math.max(0,Math.min(1,(cycle-offset-1.5)/(duration-3)));
+  viewport.scrollTop=progress*(viewport.scrollHeight-viewport.clientHeight);
+};
+document.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>selectFile(el.dataset.file)));
+const capture=location.search.includes('capture');
+if(capture){document.body.classList.add('capture');document.querySelector('.controls').hidden=true;}
+document.querySelector('#pause').textContent='Pause animation';
+document.querySelector('#pause').addEventListener('click',e=>{paused=!paused;e.target.textContent=paused?'Resume animation':'Pause animation'});
+resize();selectFile('index.html');addEventListener('resize',resize);
+if(!capture&&!reduced.matches) requestAnimationFrame(tick);
+</script></body></html>

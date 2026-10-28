@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heart Animation Code</title><style>body{margin:0;background:#08090d;color:white;font-family:system-ui;text-align:center}h1{font-size:24px}p{color:#ff7a25}canvas{display:block;width:min(100%,720px);margin:auto}pre{text-align:left;overflow:auto;margin:20px auto;padding:20px;background:#0d1117;max-width:680px;color:#d2d9e6}</style><h1>Heart Animation Code</h1><p>@codewithrishabh3596</p><canvas width="720" height="570"></canvas><pre id="source"></pre><script>function drawParticles(ctx, seconds, width, height) {
+  ctx.fillStyle = '#17141c';
+  ctx.fillRect(0, 0, width, height);
+  const pulse = 1 + 0.07 * Math.sin(seconds * 6);
+  const shape = a => [16 * Math.sin(a) ** 3,
+    -(13 * Math.cos(a) - 5 * Math.cos(2*a)
+      - 2 * Math.cos(3*a) - Math.cos(4*a))];
+  for (let i = 0; i < 620; i++) {
+    for (let tail = 5; tail >= 0; tail--) {
+      const time = seconds - tail * 0.028;
+      const angle = i * 2.399963 + time * 0.5;
+      const [x, y] = shape(angle);
+      const drift = 1 + 0.065 * Math.sin(i * 1.7 + time * 3);
+      const scale = Math.min(width, height) / 43 * pulse;
+      const opacity = (1 - tail / 7) * (0.48 + 0.45 * (Math.sin(i) ** 2));
+      ctx.fillStyle = `rgba(255,35,85,${opacity})`;
+      ctx.beginPath();
+      ctx.arc(width/2 + x*scale*drift,
+        height/2 + y*scale*drift - 15, tail ? 0.8 : 1.25, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+}
+
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');document.querySelector('#source').textContent="function drawParticles(ctx, seconds, width, height) {\n  ctx.fillStyle = '#17141c';\n  ctx.fillRect(0, 0, width, height);\n  const pulse = 1 + 0.07 * Math.sin(seconds * 6);\n  const shape = a => [16 * Math.sin(a) ** 3,\n    -(13 * Math.cos(a) - 5 * Math.cos(2*a)\n      - 2 * Math.cos(3*a) - Math.cos(4*a))];\n  for (let i = 0; i < 620; i++) {\n    for (let tail = 5; tail >= 0; tail--) {\n      const time = seconds - tail * 0.028;\n      const angle = i * 2.399963 + time * 0.5;\n      const [x, y] = shape(angle);\n      const drift = 1 + 0.065 * Math.sin(i * 1.7 + time * 3);\n      const scale = Math.min(width, height) / 43 * pulse;\n      const opacity = (1 - tail / 7) * (0.48 + 0.45 * (Math.sin(i) ** 2));\n      ctx.fillStyle = `rgba(255,35,85,${opacity})`;\n      ctx.beginPath();\n      ctx.arc(width/2 + x*scale*drift,\n        height/2 + y*scale*drift - 15, tail ? 0.8 : 1.25, 0, Math.PI*2);\n      ctx.fill();\n    }\n  }\n}\n";const start=performance.now();function tick(ms){drawParticles(ctx,(ms-start)/1000,720,570);requestAnimationFrame(tick)}requestAnimationFrame(tick);</script></html>

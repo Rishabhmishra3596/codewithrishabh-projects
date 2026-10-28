@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- Login Form With Feelings — @CodeWithRishabh3596 | demo password: feelings -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login Form With Feelings</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;font-family:Poppins,system-ui,sans-serif;background:radial-gradient(ellipse at 50% 30%,#4a2a9e,#140a33 75%);padding:20px}
+.wrap{width:min(380px,100%);position:relative}
+svg{display:block;width:62%;margin:0 auto -34px;position:relative;z-index:0;transition:transform .3s}
+svg *{transition:all .3s ease}
+.card{position:relative;z-index:1;background:#fff;border-radius:20px;padding:26px;color:#1d1340}
+h2{font-size:22px;margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:600;color:#6b5fa0;margin:12px 0 6px}
+input{width:100%;height:48px;border:3px solid #d9d2f5;border-radius:12px;padding:0 14px;font:inherit;font-size:17px;outline:none}
+input:focus{border-color:#7c5cff;box-shadow:0 0 0 5px rgba(124,92,255,.2)}
+button{width:100%;height:50px;margin-top:20px;border:0;border-radius:12px;background:#7c5cff;color:#fff;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+button:active{transform:scale(.97)}
+.msg{min-height:20px;margin-top:10px;font-size:14px;font-weight:600;color:#ff3b4e}
+/* states */
+.shake{animation:shake .5s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.hide #hL{transform:translate(60px,-88px) scale(1.35)}
+.hide #hR{transform:translate(-60px,-88px) scale(1.35)}
+#hL,#hR{transform-box:fill-box;transform-origin:center}
+.worried #browL{transform:translateY(-8px) rotate(-20deg)}
+.worried #browR{transform:translateY(-8px) rotate(20deg)}
+#browL,#browR{transform-box:fill-box;transform-origin:center}
+#mW,#mJ,#sweat,#happy,#blush{opacity:0}
+.worried #mN,.happy #mN,.happy #eyes{opacity:0}
+.worried #mW,.worried #sweat,.happy #mJ,.happy #happy,.happy #blush{opacity:1}
+.happy{animation:jump .5s 3}
+@keyframes jump{50%{transform:translateY(-24px)}}
+#confetti{position:fixed;inset:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="wrap">
+<svg id="buddy" viewBox="0 0 300 280" aria-hidden="true">
+ <path d="M150 30C240 30 275 100 270 170S215 268 150 268 35 240 30 170 60 30 150 30Z" fill="#ffd23f" stroke="#1d1340" stroke-width="6"/>
+ <path d="M120 34Q128 6 146 22Q160 2 172 32" fill="#ffd23f" stroke="#1d1340" stroke-width="6"/>
+ <g id="blush" fill="#ff7a8a"><ellipse cx="78" cy="178" rx="20" ry="11"/><ellipse cx="222" cy="178" rx="20" ry="11"/></g>
+ <g id="eyes">
+  <ellipse cx="112" cy="130" rx="30" ry="34" fill="#fff" stroke="#1d1340" stroke-width="5"/>
+  <ellipse cx="188" cy="130" rx="30" ry="34" fill="#fff" stroke="#1d1340" stroke-width="5"/>
+  <g id="pupils"><circle cx="112" cy="130" r="14" fill="#1d1340"/><circle cx="188" cy="130" r="14" fill="#1d1340"/>
+  <circle cx="117" cy="124" r="5" fill="#fff"/><circle cx="193" cy="124" r="5" fill="#fff"/></g>
+ </g>
+ <g id="happy" fill="none" stroke="#1d1340" stroke-width="8" stroke-linecap="round"><path d="M88 138Q112 106 136 138"/><path d="M164 138Q188 106 212 138"/></g>
+ <rect id="browL" x="88" y="80" width="48" height="9" rx="4" fill="#1d1340"/>
+ <rect id="browR" x="164" y="80" width="48" height="9" rx="4" fill="#1d1340"/>
+ <path id="mN" d="M128 196Q150 214 172 196" fill="none" stroke="#1d1340" stroke-width="7" stroke-linecap="round"/>
+ <path id="mW" d="M124 210Q137 198 150 208T176 204" fill="none" stroke="#1d1340" stroke-width="7" stroke-linecap="round"/>
+ <path id="mJ" d="M116 188Q150 246 184 188Z" fill="#1d1340"/>
+ <path id="sweat" d="M240 80Q252 100 246 110Q236 116 232 104Q232 94 240 80Z" fill="#7fd6ff" stroke="#1d1340" stroke-width="3"/>
+ <ellipse id="hL" cx="52" cy="218" rx="27" ry="23" fill="#f4b81f" stroke="#1d1340" stroke-width="5"/>
+ <ellipse id="hR" cx="248" cy="218" rx="27" ry="23" fill="#f4b81f" stroke="#1d1340" stroke-width="5"/>
+</svg>
+<form class="card" id="form" novalidate>
+ <h2>Welcome back</h2>
+ <label for="user">Username</label><input id="user" autocomplete="username">
+ <label for="pass">Password</label><input id="pass" type="password" autocomplete="current-password">
+ <button>Log in</button>
+ <div class="msg" id="msg" role="status"></div>
+</form>
+</div>
+<canvas id="confetti"></canvas>
+<script>
+const buddy=document.getElementById('buddy'),pupils=document.getElementById('pupils'),
+form=document.getElementById('form'),user=document.getElementById('user'),
+pass=document.getElementById('pass'),msg=document.getElementById('msg');
+
+// 1. Eyes follow the caret: map text length to -12px..12px
+function look(){const x=Math.min(user.value.length/20,1)*24-12;pupils.style.transform=`translate(${x}px,10px)`}
+user.addEventListener('input',look);user.addEventListener('focus',look);
+user.addEventListener('blur',()=>pupils.style.transform='');
+
+// 2. Cover eyes on password
+pass.addEventListener('focus',()=>buddy.classList.add('hide'));
+pass.addEventListener('blur',()=>buddy.classList.remove('hide'));
+
+// 3 + 4. Validate: worried on fail, celebrate on success
+form.addEventListener('submit',e=>{
+ e.preventDefault();buddy.classList.remove('hide','worried','happy');
+ if(!user.value.trim()||pass.value!=='feelings'){
+  msg.textContent=!user.value.trim()?'Enter a username.':'Wrong password. Hint: feelings';
+  buddy.classList.add('worried');form.classList.remove('shake');void form.offsetWidth;form.classList.add('shake');
+  setTimeout(()=>buddy.classList.remove('worried'),1800);return;
+ }
+ msg.textContent='';buddy.classList.add('happy');confetti();
+});
+
+// Confetti (no library)
+function confetti(){
+ const c=document.getElementById('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+ const col=['#ffd23f','#ff3b4e','#5ef2b0','#7c5cff','#7fd6ff'];
+ const p=Array.from({length:150},()=>({x:c.width/2,y:c.height*.6,vx:(Math.random()-.5)*16,vy:-Math.random()*16-6,r:Math.random()*6,c:col[Math.random()*5|0]}));
+ let f=0;(function draw(){x.clearRect(0,0,c.width,c.height);
+  p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.4;q.r+=.1;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillStyle=q.c;x.fillRect(-6,-4,12,8);x.restore()});
+  if(++f<140)requestAnimationFrame(draw);else x.clearRect(0,0,c.width,c.height)})();
+}
+</script>
+</body></html>
