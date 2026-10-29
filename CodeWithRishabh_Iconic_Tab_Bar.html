@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#00172f">
+<title>Iconic Tab Bar | CodeWithRishabh</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #00172f; color: white; font-family: Arial, sans-serif; }
+  main { width: min(950px, 94%); padding: 35px 0; }
+  .brand { margin: 0 0 14px; font-size: 18px; font-weight: 800; }
+  h1 { margin: 0 0 30px; color: #37efa0; font-size: clamp(26px, 5vw, 42px); }
+  .stage { display: grid; place-items: center; min-height: 290px; padding: 70px 25px; background: linear-gradient(315deg, #e3efe8, #96a7cf); }
+  .tab-bar { --index: 0; --color: #53bcff; position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: min(660px, 100%); height: 100px; padding: 0 20px; border-radius: 17px; background: #141414; box-shadow: 0 10px 20px #0002; }
+  .tab-bar input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .tab-bar:has(#home:checked) { --index: 0; --color: #53bcff; }
+  .tab-bar:has(#search:checked) { --index: 1; --color: #ff9c4a; }
+  .tab-bar:has(#notification:checked) { --index: 2; --color: #c4ed3f; }
+  .tab-bar:has(#favorites:checked) { --index: 3; --color: #ff76b5; }
+  .tab-bar:has(#profile:checked) { --index: 4; --color: #f2c351; }
+  .selector, .indicator { position: absolute; left: calc(10% + 16px + var(--index) * (100% - 40px) / 5); transform: translateX(-50%); pointer-events: none; transition: left .55s cubic-bezier(.22,1,.36,1), background .4s, box-shadow .4s; }
+  .selector { z-index: 0; top: -30px; width: 92px; height: 92px; border: 8px solid #141414; border-radius: 50%; background: radial-gradient(circle at 42% 37%, #ffffff7a, transparent 58%), var(--color); box-shadow: inset 0 0 0 2px #ffffff55, inset 0 0 14px #0003; }
+  .selector::before { content: ''; position: absolute; inset: 3px; border-radius: inherit; border: 1px solid #ffffff4d; }
+  .selector::after { content: ''; position: absolute; left: 3px; right: 3px; top: 72px; height: 48px; border-radius: 50%; background: var(--color); filter: blur(18px); opacity: .6; transition: background .4s; }
+  .indicator { bottom: -12px; width: 55px; height: 7px; border-radius: 10px; background: #141414; }
+  .tab-bar label { z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; padding: 0 2px 22px; gap: 8px; color: #aabbd0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .tab-bar label svg { width: 32px; height: 32px; flex: none; fill: currentColor; stroke: currentColor; transition: transform .55s cubic-bezier(.22,1,.36,1), color .3s, filter .3s; }
+  .tab-bar label span { font-size: 9px; line-height: 1; text-transform: uppercase; white-space: nowrap; transition: color .4s, text-shadow .4s; }
+  .tab-bar input:checked + label { color: var(--color); }
+  .tab-bar input:checked + label svg { transform: translateY(-26px); color: white; filter: drop-shadow(0 0 5px #fff9); }
+  .tab-bar input:checked + label span { text-shadow: 0 0 10px var(--color); }
+  .tab-bar label:hover svg { color: white; filter: drop-shadow(0 0 5px #fff9); }
+  .tab-bar label:hover span { color: white; }
+  .tab-bar input:focus-visible + label { outline: 2px solid white; outline-offset: 3px; border-radius: 8px; }
+  .foot { margin-top: 26px; color: #a7c1d8; font-size: 13px; line-height: 1.7; }
+  .foot a { color: #37efa0; text-underline-offset: 4px; }
+  @media (max-width: 530px) {
+    .stage { padding: 60px 12px; min-height: 240px; }
+    .tab-bar { height: 88px; padding: 0 10px; border-radius: 12px; }
+    .selector, .indicator { left: calc(10% + 8px + var(--index) * (100% - 20px) / 5); }
+    .selector { top: -23px; width: 68px; height: 68px; border-width: 6px; }
+    .selector::after { top: 54px; height: 40px; filter: blur(13px); }
+    .tab-bar label { padding-bottom: 19px; gap: 9px; }
+    .tab-bar label svg { width: 25px; height: 25px; }
+    .tab-bar label span { font-size: 7px; }
+    .tab-bar input:checked + label svg { transform: translateY(-24px); }
+    .indicator { width: 37px; height: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="brand">@codewithrishabh3596</p>
+  <h1>Iconic Tab Bar</h1>
+  <div class="stage">
+    <div class="tab-bar" role="group" aria-label="Choose a navigation item">
+      <input type="radio" name="navigation" id="home" value="home" checked>
+      <label for="home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 15 16 3l13 12-3 3L16 9 6 18Z" stroke="none"/><path d="M7 17 16 9l9 8v13h-7v-9h-4v9H7Z" stroke="none"/></svg>
+        <span>Home</span>
+      </label>
+      <input type="radio" name="navigation" id="search" value="search">
+      <label for="search">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="9" fill="none" stroke-width="3.5"/><path d="m20 20 9 9" fill="none" stroke-width="5" stroke-linecap="round"/></svg>
+        <span>Search</span>
+      </label>
+      <input type="radio" name="navigation" id="notification" value="notification">
+      <label for="notification">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24v-3l3-3V12a9 9 0 0 1 7-9V1h4v2a9 9 0 0 1 7 9v6l3 3v3Z" stroke="none"/><path d="M12 27h8a4 4 0 0 1-8 0Z" stroke="none"/></svg>
+        <span>Notification</span>
+      </label>
+      <input type="radio" name="navigation" id="favorites" value="favorites">
+      <label for="favorites">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29 4 17C-5 7 8-4 16 6 24-4 37 7 28 17Z" stroke="none"/></svg>
+        <span>Favorites</span>
+      </label>
+      <input type="radio" name="navigation" id="profile" value="profile">
+      <label for="profile">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="9" r="7" stroke="none"/><path d="M3 31v-3a13 13 0 0 1 26 0v3Z" stroke="none"/></svg>
+        <span>Profile</span>
+      </label>
+      <div class="selector" aria-hidden="true"></div>
+      <div class="indicator" aria-hidden="true"></div>
+    </div>
+  </div>
+  <p class="foot">Click an icon to select it. Focus the radio group with Tab, then use the arrow keys to switch items.<br><a href="https://codewithrishabh.rishabhmishra9619.workers.dev/">Explore code, notes &amp; projects</a></p>
+</main>
+</body>
+</html>
