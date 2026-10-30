@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pull to Light Login | CodeWithRishabh</title>
+<style>
+:root{color-scheme:dark;--gold:#ffb339;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;background:#080a0f;color:#f3f4f5;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}.brand{position:absolute;z-index:5;top:25px;left:30px;font-weight:700;text-decoration:none;font-size:15px;color:#a8adb7}.brand:hover{color:var(--gold)}.ambient{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 24% 48%,#dbaa3b24,transparent 60%);opacity:0;transition:opacity 1s}.scene{position:relative;width:min(980px,100%);display:grid;grid-template-columns:320px 440px;gap:85px;align-items:center;padding:90px 45px;isolation:isolate}.lamp{position:relative;width:320px;height:480px;z-index:2;align-self:center;margin-top:70px}.lamp-art{display:block;width:320px;height:480px;overflow:visible}.bulb-glow,.inside-light{opacity:0;transition:opacity .6s}.light-beam{position:absolute;z-index:-1;left:175px;top:167px;width:710px;height:420px;background:linear-gradient(115deg,#ffc34b48,#f9b63106 65%,transparent);clip-path:polygon(0 0,100% 5%,100% 100%,4% 18%);filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .8s}.pull-cord{--pull:0px;position:absolute;top:167px;left:161px;width:32px;height:140px;padding:0;border:0;background:transparent;touch-action:none;cursor:grab;user-select:none}.pull-cord:active{cursor:grabbing}.cord-line{position:absolute;top:0;left:15px;width:2px;height:calc(112px + var(--pull));background:linear-gradient(#ffe29b,#b48730);box-shadow:0 0 3px #f4c05e38;transition:height .55s cubic-bezier(.34,1.7,.4,1)}.cord-knob{position:absolute;top:calc(108px + var(--pull));left:9px;width:14px;height:21px;border-radius:5px 5px 4px 4px;background:linear-gradient(90deg,#88601c,#edc46b 45%,#a67a29);box-shadow:0 3px 8px #0008;transition:top .55s cubic-bezier(.34,1.7,.4,1)}.dragging .cord-line,.dragging .cord-knob{transition:none}.pull-hint{position:absolute;top:345px;left:90px;white-space:nowrap;margin:0;font-size:12px;font-weight:600;color:#d5d6db;padding:8px 12px;border:1px solid #ffffff0b;border-radius:18px;background:#11141bd9;transition:opacity .3s}.login-card{position:relative;z-index:3;width:440px;padding:38px 36px 30px;border:1px solid #ffffff0d;border-radius:28px;background:linear-gradient(135deg,#15191dde,#10141bef);box-shadow:0 24px 70px #0006;backdrop-filter:blur(16px);opacity:0;visibility:hidden;transform:translateY(22px) scale(.98);transition:opacity .65s,transform .8s var(--ease),visibility 0s .65s}body[data-on="true"] .ambient,body[data-on="true"] .light-beam,body[data-on="true"] .bulb-glow,body[data-on="true"] .inside-light{opacity:1}body[data-on="true"] .pull-hint{opacity:0}body[data-on="true"] .login-card{opacity:1;visibility:visible;transform:translateY(0) scale(1);transition-delay:.12s,.12s,0s}body[data-on="true"] .cord-knob{box-shadow:0 0 20px #ffbe4880,0 2px 5px #0008}h1{margin:0 0 10px;font-size:30px;letter-spacing:-1px}.subtitle{margin:0;color:#858a94;font-size:14px;line-height:1.5}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;background:#090d12;border-radius:20px;margin:27px 0 28px}.tab{border:0;border-radius:14px;height:36px;background:transparent;color:#92969f;font-size:13px;font-weight:600;transition:background .25s,color .25s,box-shadow .25s}.tab[aria-selected="true"]{background:#2c3033;color:white;box-shadow:0 2px 6px #0006}.field{margin-bottom:21px}.field-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}label{font-size:12px;color:#c3c5cc}.text-button{border:0;padding:0;background:none;color:#d6a543;font-size:12px}.input-wrap{position:relative}.input-wrap>svg{position:absolute;left:15px;top:16px;width:18px;height:18px;fill:none;stroke:#737981;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}input:not([type="checkbox"]){width:100%;height:50px;padding:0 44px;border:1px solid #ffffff08;border-radius:13px;background:#25292d;color:#f4f4f5;outline:none;font-size:14px;transition:border-color .25s,box-shadow .25s}input::placeholder{color:#71757e}input:focus{border-color:#b48335;box-shadow:0 0 0 3px #ffb33914}.eye{position:absolute;right:9px;top:9px;width:32px;height:32px;padding:7px;background:transparent;border:0;border-radius:6px;color:#858c95}.eye svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}.remember{display:flex;align-items:center;gap:9px;margin:4px 0 25px;color:#aaaeb7;font-size:12px;width:fit-content}.remember input{accent-color:var(--gold);width:17px;height:17px;margin:0}.submit{border:0;width:100%;height:51px;border-radius:14px;background:linear-gradient(110deg,#ffb83e,#df9220);color:#171109;font-size:14px;font-weight:800;box-shadow:0 6px 22px #ffad2d13;transition:transform .2s,box-shadow .2s}.submit:hover{transform:translateY(-2px);box-shadow:0 9px 25px #ffad2d2b}.submit:active{transform:translateY(1px)}.submit span{padding-left:12px;font-size:19px}.divider{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.8px;color:#686d77;margin:28px 0 19px}.divider::before,.divider::after{content:"";height:1px;flex:1;background:#ffffff0b}.socials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.socials button{height:44px;border:1px solid #ffffff04;border-radius:11px;background:#1c2128;color:#eceff2;font-size:19px;font-weight:700;transition:background .2s,transform .2s}.socials button:hover{background:#2b323b;transform:translateY(-2px)}.socials svg{width:19px;height:19px;vertical-align:middle;fill:currentColor}.google{background:conic-gradient(#4285f4 0 90deg,#34a853 90deg 180deg,#fbbc05 180deg 240deg,#ea4335 240deg 300deg,#4285f4 300deg);background-clip:text;-webkit-background-clip:text;color:transparent}.notice{font-size:11px;line-height:1.5;color:#8f959f;margin:14px 0 0;min-height:17px}.footer{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#666e7c;font-size:11px;text-decoration:none}#dust{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}body[data-on="true"] #dust{opacity:1}[hidden]{display:none!important}
+@media(max-width:900px){.scene{grid-template-columns:260px minmax(0,440px);gap:25px;padding:90px 25px}.lamp{width:260px;height:420px;transform:scale(.82);transform-origin:left center}.login-card{width:100%;padding:30px 25px}.light-beam{width:650px}}
+@media(max-width:620px){body{display:block;min-height:100svh}.brand{top:23px;left:20px;font-size:13px}.scene{display:flex;flex-direction:column;gap:0;padding:80px 20px 75px;min-height:100svh}.lamp{align-self:center;flex-shrink:0;margin-top:-95px;margin-left:70px;margin-bottom:-30px;height:350px;transform:scale(.65);transform-origin:center bottom}.light-beam{width:500px;transform:rotate(30deg);transform-origin:top left}.login-card{max-width:440px;padding:30px 25px}.footer{position:static;display:block;padding:0 15px 20px}.pull-hint{left:80px}h1{font-size:28px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}#dust{display:none}}
+</style>
+</head>
+<body data-on="false">
+<a class="brand" href="https://codewithrishabh.rishabhmishra9619.workers.dev/">@codewithrishabh3596</a>
+<div class="ambient" aria-hidden="true"></div><canvas id="dust" aria-hidden="true"></canvas>
+<main class="scene">
+ <div class="lamp">
+  <div class="light-beam" aria-hidden="true"></div>
+  <svg class="lamp-art" viewBox="0 0 320 480" aria-hidden="true">
+   <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#080a0e"/><stop offset=".35" stop-color="#545c65"/><stop offset=".55" stop-color="#242a31"/><stop offset="1" stop-color="#05070b"/></linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="#3a4149"/><stop offset=".42" stop-color="#22282f"/><stop offset="1" stop-color="#0b0e13"/></linearGradient>
+    <linearGradient id="gold"><stop stop-color="#76531a"/><stop offset=".45" stop-color="#f4cf73"/><stop offset="1" stop-color="#8e6622"/></linearGradient>
+    <radialGradient id="inner"><stop stop-color="#fff3bc"/><stop offset=".5" stop-color="#edcb72"/><stop offset="1" stop-color="#97702d"/></radialGradient>
+    <radialGradient id="halo"><stop stop-color="#ffcb59" stop-opacity=".6"/><stop offset="1" stop-color="#ffbf36" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+   </defs>
+   <ellipse cx="125" cy="447" rx="102" ry="14" fill="#000" opacity=".55"/>
+   <ellipse cx="125" cy="432" rx="88" ry="16" fill="#090c11" stroke="#242a31" stroke-width="3"/>
+   <ellipse cx="125" cy="427" rx="82" ry="10" fill="url(#metal)"/>
+   <path d="M128 422 94 257 145 143" fill="none" stroke="#05070a" stroke-width="13"/>
+   <path d="M128 422 94 257 145 143" fill="none" stroke="url(#metal)" stroke-width="9"/>
+   <path d="M124 419 90 257 141 145" fill="none" stroke="#727980" stroke-opacity=".45" stroke-width="2"/>
+   <circle cx="128" cy="422" r="14" fill="url(#gold)"/><circle cx="128" cy="422" r="7" fill="#242a30"/>
+   <circle cx="94" cy="257" r="13" fill="url(#gold)"/><circle cx="94" cy="257" r="6" fill="#242a30"/>
+   <circle class="bulb-glow" cx="176" cy="163" r="102" fill="url(#halo)" filter="url(#blur)"/>
+   <path d="M116 151 Q130 74 173 81 Q214 85 236 188 Q179 210 116 151Z" fill="url(#shade)" stroke="#2e333a" stroke-width="2"/>
+   <ellipse cx="176" cy="171" rx="63" ry="18" transform="rotate(18 176 171)" fill="#0c1015" stroke="url(#gold)" stroke-width="3"/>
+   <ellipse class="inside-light" cx="176" cy="171" rx="61" ry="16" transform="rotate(18 176 171)" fill="url(#inner)"/>
+   <ellipse cx="177" cy="165" rx="13" ry="10" fill="#48494a"/>
+   <ellipse class="inside-light" cx="177" cy="165" rx="13" ry="10" fill="#fff1bb"/>
+  </svg>
+  <button class="pull-cord" id="pullCord" type="button" aria-label="Turn on the lamp" aria-pressed="false" aria-controls="loginCard"><span class="cord-line"></span><span class="cord-knob"></span></button>
+  <p class="pull-hint">Pull string to turn on</p>
+ </div>
+ <section class="login-card" id="loginCard" inert aria-hidden="true" aria-labelledby="heading">
+  <h1 id="heading">Welcome</h1><p class="subtitle" id="subtitle">Sign in to continue to your account</p>
+  <div class="tabs" role="tablist" aria-label="Account options"><button class="tab" id="signInTab" type="button" role="tab" aria-selected="true" aria-controls="accountPanel">Sign In</button><button class="tab" id="signUpTab" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="accountPanel">Sign Up</button></div>
+  <form id="accountPanel" role="tabpanel" aria-labelledby="signInTab">
+   <div class="field"><div class="field-heading"><label for="username">Username or Email</label></div><div class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><input id="username" name="username" autocomplete="username" placeholder="Enter username or email" required></div></div>
+   <div class="field" id="emailField" hidden><div class="field-heading"><label for="email">Email</label></div><div class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><input id="email" name="email" type="email" autocomplete="email" placeholder="Enter email" disabled></div></div>
+   <div class="field"><div class="field-heading"><label for="password">Password</label><button class="text-button" id="forgot" type="button">Forgot?</button></div><div class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required><button class="eye" id="eye" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+   <label class="remember" id="rememberRow"><input type="checkbox" name="remember" checked>Remember me</label>
+   <button class="submit" type="submit"><strong id="submitText">Sign In</strong><span aria-hidden="true">→</span></button>
+  </form>
+  <div class="divider">OR CONTINUE WITH</div>
+  <div class="socials"><button type="button" aria-label="Google demo"><span class="google">G</span></button><button type="button" aria-label="GitHub demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.58 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></button><button type="button" aria-label="Apple demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.8 2.3c.2 1.5-.5 3-1.4 3.9-.9.9-2.2 1.5-3.5 1.4-.2-1.4.5-2.8 1.4-3.7.9-.9 2.3-1.5 3.5-1.6ZM20 17.7c-.5 1.2-.8 1.8-1.5 2.8-.9 1.2-2.1 2.7-3.5 2.7-1.2 0-1.5-.8-3.2-.8s-2 .8-3.2.8c-1.4 0-2.5-1.4-3.4-2.6-2.5-3.5-2.8-7.7-1.3-9.9 1-1.6 2.6-2.4 4.1-2.4 1.4 0 2.3.8 3.5.8 1.1 0 1.8-.8 3.5-.8 1.3 0 2.7.7 3.7 1.9-3.2 1.8-2.7 6.4.8 7.5Z"/></svg></button></div>
+  <p class="notice" id="notice" role="status" aria-live="polite"></p>
+ </section>
+</main>
+<a class="footer" href="https://codewithrishabh.rishabhmishra9619.workers.dev/">CodeWithRishabh · Frontend demo only</a>
+<script>
+const body=document.body,cord=document.querySelector('#pullCord'),card=document.querySelector('#loginCard'),notice=document.querySelector('#notice');
+let isOn=false,startY=null,drag=0,pointer=null;
+function setLight(value){
+ isOn=value;body.dataset.on=String(value);card.inert=!value;card.setAttribute('aria-hidden',String(!value));cord.setAttribute('aria-pressed',String(value));cord.setAttribute('aria-label',value?'Turn off the lamp':'Turn on the lamp');
+ if(!value&&card.contains(document.activeElement))cord.focus();
+ if(value)startDust();else stopDust();
+}
+function release(cancelled=false){
+ if(startY===null)return;
+ const shouldToggle=!cancelled;startY=null;pointer=null;cord.classList.remove('dragging');cord.style.setProperty('--pull','0px');
+ if(shouldToggle)setLight(!isOn);
+}
+cord.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;startY=e.clientY;drag=0;pointer=e.pointerId;cord.setPointerCapture(pointer);cord.classList.add('dragging');});
+cord.addEventListener('pointermove',e=>{if(startY===null||e.pointerId!==pointer)return;drag=Math.max(0,Math.min(60,e.clientY-startY));cord.style.setProperty('--pull',drag+'px');});
+cord.addEventListener('pointerup',e=>{if(e.pointerId!==pointer)return;release();});
+cord.addEventListener('pointercancel',()=>release(true));cord.addEventListener('lostpointercapture',()=>release(true));
+cord.addEventListener('click',e=>{if(e.detail===0)setLight(!isOn);});
+const tabs=[document.querySelector('#signInTab'),document.querySelector('#signUpTab')],form=document.querySelector('#accountPanel'),email=document.querySelector('#email'),password=document.querySelector('#password');
+let signUp=false;
+function setMode(value){signUp=value;tabs.forEach((t,i)=>{t.setAttribute('aria-selected',String(i===Number(value)));t.tabIndex=i===Number(value)?0:-1;});document.querySelector('#heading').textContent=value?'Create account':'Welcome';document.querySelector('#subtitle').textContent=value?'Start your journey with us':'Sign in to continue to your account';document.querySelector('#emailField').hidden=!value;email.disabled=!value;email.required=value;document.querySelector('#forgot').hidden=value;document.querySelector('#rememberRow').hidden=value;password.autocomplete=value?'new-password':'current-password';password.minLength=value?8:1;document.querySelector('#submitText').textContent=value?'Sign Up':'Sign In';form.setAttribute('aria-labelledby',value?'signUpTab':'signInTab');notice.textContent='';}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>setMode(Boolean(i)));t.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const index=e.key==='Home'?0:e.key==='End'?1:1-Number(signUp);setMode(Boolean(index));tabs[index].focus();});});
+document.querySelector('#eye').addEventListener('click',e=>{const show=password.type==='password';password.type=show?'text':'password';e.currentTarget.setAttribute('aria-pressed',String(show));e.currentTarget.setAttribute('aria-label',show?'Hide password':'Show password');});
+form.addEventListener('submit',e=>{e.preventDefault();notice.textContent='Demo only — no data sent, saved, or account created.';form.reset();password.type='password';document.querySelector('#eye').setAttribute('aria-pressed','false');document.querySelector('#eye').setAttribute('aria-label','Show password');});
+document.querySelector('#forgot').addEventListener('click',()=>notice.textContent='Password recovery requires a connected backend.');document.querySelectorAll('.socials button').forEach(b=>b.addEventListener('click',()=>notice.textContent='Social sign-in is a visual demo; no provider is connected.'));
+const canvas=document.querySelector('#dust'),ctx=canvas.getContext('2d'),motion=matchMedia('(prefers-reduced-motion: reduce)');let dustFrame=0,last=0,width=0,height=0;
+const particles=Array.from({length:38},()=>({x:Math.random(),y:Math.random(),r:.5+Math.random()*1.1,s:.005+Math.random()*.009}));
+function resize(){width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+function draw(time){if(!isOn||motion.matches||document.hidden){dustFrame=0;last=0;return;}const dt=last?Math.min((time-last)/1000,.05):0;last=time;ctx.clearRect(0,0,width,height);for(const p of particles){p.y-=p.s*dt;if(p.y<0)p.y=1;ctx.beginPath();ctx.fillStyle='rgba(255,213,131,.18)';ctx.arc(p.x*width,p.y*height,p.r,0,Math.PI*2);ctx.fill();}dustFrame=requestAnimationFrame(draw);}
+function startDust(){if(!dustFrame&&!motion.matches&&!document.hidden)dustFrame=requestAnimationFrame(draw);}
+function stopDust(){cancelAnimationFrame(dustFrame);dustFrame=0;last=0;ctx.clearRect(0,0,width,height);}
+addEventListener('resize',resize);document.addEventListener('visibilitychange',()=>{if(document.hidden)stopDust();else if(isOn)startDust();});motion.addEventListener('change',()=>{if(motion.matches)stopDust();else if(isOn)startDust();});resize();
+</script>
+</body>
+</html>
