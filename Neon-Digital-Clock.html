@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000509">
+<title>Neon Digital Clock | CodeWithRishabh</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:#000509;color:#b9eeff;font-family:system-ui,sans-serif}
+.scene{position:relative;width:min(100%,1100px);height:min(76vw,680px);min-height:280px;display:grid;place-items:center;isolation:isolate;background:radial-gradient(ellipse at 50% 76%,#001b32 0,transparent 51%),#000}
+.scene::before{content:"";position:absolute;inset:52% 2% -8%;z-index:-1;background:radial-gradient(ellipse at 26% 13%,#008cff80,transparent 29%),radial-gradient(ellipse at 74% 13%,#008cff80,transparent 29%),radial-gradient(ellipse at 50% 19%,#0056af80,transparent 54%);filter:blur(17px);transform:perspective(350px) rotateX(30deg)}
+.scene::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 25%,#0009 85%)}
+.clock{--unit:clamp(24px,8.4vw,90px);position:relative;display:flex;align-items:center;gap:calc(var(--unit)*.12);padding:20px 5px;z-index:1;transform:translateY(-12%);-webkit-box-reflect:below -9px linear-gradient(transparent 42%,#ffffff22 100%)}
+.digit{position:relative;width:var(--unit);height:calc(var(--unit)*1.82);flex:none}
+.segment{position:absolute;display:block;background:#07131c;opacity:.46;transition:background .12s,opacity .12s;filter:drop-shadow(0 0 2px #032033)}
+.segment.on{opacity:1;background:#bcefff;filter:drop-shadow(0 0 2px #bcefff) drop-shadow(0 0 5px #36c4ff) drop-shadow(0 0 11px #008dff)}
+.a,.g,.d{left:12%;width:76%;height:6%;clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%)}
+.a{top:0}.g{top:47%}.d{bottom:0}
+.b,.c,.e,.f{width:10%;height:44%;clip-path:polygon(50% 0,100% 9%,100% 91%,50% 100%,0 91%,0 9%)}
+.b{right:0;top:4%}.c{right:0;bottom:4%}.e{left:0;bottom:4%}.f{left:0;top:4%}
+.colon{position:relative;width:calc(var(--unit)*.22);height:calc(var(--unit)*1.82);flex:none;margin:0 calc(var(--unit)*.025)}
+.colon::before,.colon::after{content:"";position:absolute;left:32%;width:36%;height:5%;border-radius:35%;background:#c3f1ff;box-shadow:0 0 4px #67d9ff,0 0 12px #009dff}
+.colon::before{top:32%}.colon::after{bottom:32%}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){.segment{transition:none}}
+</style>
+</head>
+<body>
+<main class="scene" aria-label="Neon digital clock">
+  <div id="clock" class="clock" aria-hidden="true"></div>
+  <time id="accessible-time" class="sr-only"></time>
+</main>
+<script>
+const clock = document.querySelector('#clock');
+const accessibleTime = document.querySelector('#accessible-time');
+const digitMap = ['abcdef','bc','abdeg','abcdg','bcfg','acdfg','acdefg','abc','abcdefg','abcdfg'];
+const segments = [];
+for (let digit = 0; digit < 6; digit++) {
+  if (digit === 2 || digit === 4) {
+    const colon = document.createElement('span');
+    colon.className = 'colon';
+    clock.append(colon);
+  }
+  const element = document.createElement('span');
+  element.className = 'digit';
+  const parts = [...'abcdefg'].map(name => {
+    const part = document.createElement('i');
+    part.className = `segment ${name}`;
+    element.append(part);
+    return { name, part };
+  });
+  segments.push(parts);
+  clock.append(element);
+}
+function updateClock() {
+  const now = new Date();
+  const parts = [now.getHours(), now.getMinutes(), now.getSeconds()].map(value => String(value).padStart(2, '0'));
+  const digits = parts.join('');
+  segments.forEach((parts, index) => {
+    const active = digitMap[Number(digits[index])];
+    parts.forEach(({name, part}) => part.classList.toggle('on', active.includes(name)));
+  });
+  accessibleTime.textContent = parts.join(':');
+  accessibleTime.setAttribute('datetime', parts.join(':'));
+  setTimeout(updateClock, 1000 - Date.now() % 1000);
+}
+updateClock();
+</script>
+</body>
+</html>
