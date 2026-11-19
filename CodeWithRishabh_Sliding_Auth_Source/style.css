@@ -1,0 +1,35 @@
+@font-face{font-family:LocalSans;src:url(assets/sans.ttf)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-content:center;background:#eaf0ff;color:#222;font-family:LocalSans,Arial,sans-serif}
+.auth-card {
+  display: flex;
+  width: 580px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  background: #edebee;
+  border-radius: 5px;
+}
+.overlay {
+  background: #ff0710;
+  color: #ffffff;
+}
+button {
+  background: #ff0710;
+  color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+}
+.auth-card{position:relative;height:360px;box-shadow:0 18px 45px #496d9420}
+.form{width:50%;height:100%;padding:48px 30px 30px;display:flex;align-items:center;flex-direction:column;gap:10px;transition:transform 700ms cubic-bezier(.4,0,.6,1)}
+h2{font-size:25px;margin:10px 0 16px}p{font-size:11px;margin:0 0 8px}input{font:inherit;font-size:11px;min-height:32px}input:focus{outline:2px solid #ff0710;outline-offset:1px}
+a{font-size:11px;color:#777;text-decoration:none;margin:7px 0}button{font:inherit;font-size:10px;font-weight:700;padding:9px 28px;cursor:pointer;min-height:30px}
+.overlay{position:absolute;left:50%;top:0;width:50%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform 700ms cubic-bezier(.4,0,.6,1)}
+.overlay button{border:1px solid #ffb3b6;background:transparent;margin-top:16px}.overlay h2{margin-bottom:20px}
+.auth-card.signup .overlay{transform:translateX(-100%)}.auth-card.signup .form{transform:translateX(100%)}
+#status{text-align:center;min-height:20px;margin-top:24px;color:#193756;font-size:13px}[hidden]{display:none!important}
+@media(max-width:620px){.auth-card{width:94vw}.form{padding:35px 15px}h2{font-size:20px}.overlay p{max-width:85%}}

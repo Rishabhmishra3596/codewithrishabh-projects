@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sliding Login / Signup | CodeWithRishabh</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="auth-card" id="auth">
+  <form class="form" id="login">
+    <h2>Sign In</h2>
+    <p>Sign in with email &amp; password</p>
+    <input type="email" name="email" placeholder="Enter E-mail" required>
+    <input type="password" name="password" placeholder="Enter Password" required>
+    <a href="#help" id="help">Forgot Password?</a>
+    <button type="submit">SIGN IN</button>
+  </form>
+  <form class="form" id="signup" hidden>
+    <h2>Create Account</h2>
+    <p>Sign up with your email</p>
+    <input name="name" placeholder="Enter Name" required>
+    <input type="email" name="email" placeholder="Enter E-mail" required>
+    <input type="password" name="password" placeholder="Enter Password" minlength="6" required>
+    <button type="submit">REGISTER</button>
+  </form>
+  <aside class="overlay">
+    <h2 id="greeting">Hello World</h2>
+    <p id="intro">Sign up now and enjoy our site</p>
+    <button type="button" id="toggle">SIGN UP</button>
+  </aside>
+</main>
+<p id="status" role="status" aria-live="polite"></p>
+<script src="app.js"></script>
+</body>
+</html>

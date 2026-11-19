@@ -1,0 +1,12 @@
+{
+  "name": "codewithrishabh-sliding-auth",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "render": "node render.cjs",
+    "preview-frames": "node render.cjs --preview"
+  },
+  "dependencies": {
+    "sharp": "0.34.5"
+  }
+}
